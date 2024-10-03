@@ -1,9 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TechList } from "./TechList";
-
+import { getAllProjectsOfType } from "../../service/projectsService";
 
 export const FeaturedProjectCard = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [projects, setProjects] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    const fetchAllFeaturedProjects = async () => {
+      setIsLoading(true);
+      try {
+        const data = await getAllProjectsOfType("featured");
+        setProjects(data);
+      } catch (err) {
+        console.error(err);
+        console.log(`Unable to get featured projects from service file`);
+        setProjects([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchAllFeaturedProjects();
+  }, []);
   return (
     <div className="project-card text-center rounded-lg relative flex justify-center flex-col items-center">
       <div className="project-content">
