@@ -1,55 +1,36 @@
-import { faNodeJs, faReact } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-const techListData = [
-  {
-    name: "React",
-    icon: faReact,
-  },
-  {
-    name: "Node JS",
-    icon: faNodeJs,
-  },
-  {
-    name: "Node JS",
-    icon: faNodeJs,
-  },
-  {
-    name: "Node JS",
-    icon: faNodeJs,
-  },
-  {
-    name: "Node JS",
-    icon: faNodeJs,
-  },
-  {
-    name: "Node JS",
-    icon: faNodeJs,
-  },
-  {
-    name: "Node JS",
-    icon: faNodeJs,
-  },
-  {
-    name: "Node JS",
-    icon: faNodeJs,
-  },
-  {
-    name: "Node JS",
-    icon: faNodeJs,
-  },
+const devTechnologies = [
+  "React",
+  "Vite",
+  "Node.js",
+  "Express",
+  "MongoDB",
+  "GraphQL",
+  "Next.js",
+  "Tailwind CSS",
+  "TypeScript",
+  "Webpack",
+  "Docker",
+  "Kubernetes",
+  "PostgreSQL",
+  "Firebase",
+  "AWS",
+  "Redux",
+  "Jest",
+  "Cypress",
+  "SASS",
+  "Socket.io"
 ];
-export const TechList = () => {
+
+export const TechList = ({ technologies=devTechnologies }) => {
   return (
-    <ul className="tech-list flex flex-wrap gap-4 my-6 h-96 p-2 justify-center overflow-y-scroll text-2xl w-full  custom-scrollbar ">
-      {techListData.map((item) => {
+    <ul className="tech-list flex flex-wrap gap-4 my-8  p-2 justify-center items-start overflow-y-scroll text-2xl w-full  custom-scrollbar ">
+      {technologies?.map((item) => {
         return (
           <li
             key={item.name + item.idx}
-            className="tech-list-item bg-blue-400 p-4 mx-4 rounded-3xl shadow-lg gap-6 flex items-center w-40 h-20"
+            className="tech-list-item bg-blue-400 p-4 mx-4 rounded-3xl shadow-lg flex items-center justify-center w-40 h-16"
           >
             {item.name}
-            <FontAwesomeIcon icon={item.icon} />
           </li>
         );
       })}
