@@ -1,22 +1,19 @@
-import React from "react";
 import Nav from "./components/Nav";
-import Landing from "./components/Landing";
-import About from "./components/About";
-import Gallery from "./components/Gallery";
-import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import { RegularProjectCard } from "./components/Gallery/RegularProjectCard";
-import ParabolaGradient from "./components/Backgrounds/ParabolaGradient";
-import RegularProjectSections from "./components/Gallery/RegularProjectSections";
+
+import Landing from "./components/Landing";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
+  
   return (
     <>
-      <Nav />
-      <Landing />
-      <RegularProjectSections />
-      <About />
-      <Contact />
+      <BrowserRouter>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<Landing />} />
+        </Routes>
+      </BrowserRouter>
       <Footer />
     </>
   );
