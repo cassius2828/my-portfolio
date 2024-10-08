@@ -1,18 +1,14 @@
 import { Link } from "react-router-dom";
 import { TechList } from "./TechList";
-import { useState } from "react";
-import ProjectDetailsModal from "./ProjectDetails";
 
 export const RegularProjectCard = ({
   title,
-  img,
   description,
   technologies,
   prodLink,
   githubLink,
+  id,
 }) => {
-  const [showMore, setShowMore] = useState(false);
-
   return (
     <>
       <div className="project-card text-center  rounded-lg relative transition-all duration-300 ease-in-out hover:bg-gray-800">
@@ -38,27 +34,18 @@ export const RegularProjectCard = ({
             </button>
           </Link>
         </div>
-        <span
-          onClick={() => setShowMore((prev) => !prev)}
-          className="text-gray-100 relative -top-5 cursor-pointer"
+        <Link
+          to={`projects/${id}`}
+          className="text-gray-100 relative -top-3 cursor-pointer"
         >
-          {showMore ? "hide details" : "more details"}
-        </span>
+          {/* {showMore ? "hide details" : "more details"}
+           */}
+          more details
+        </Link>
         {/* tech list  */}
         <h4 className="text-3xl">Technologies Used</h4>
         <TechList technologies={technologies} />
       </div>
-      {showMore && (
-        <ProjectDetailsModal
-          technologies={technologies}
-          img={img}
-          title={title}
-          description={description}
-          prodLink={prodLink}
-          githubLink={githubLink}
-          handleClose={() => setShowMore(false)}
-        />
-      )}
     </>
   );
 };

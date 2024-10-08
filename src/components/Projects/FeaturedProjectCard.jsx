@@ -1,7 +1,5 @@
-
 import { useGlobalContext } from "../../context/useGlobalContext";
 import { Link } from "react-router-dom";
-
 
 export const FeaturedProjectCard = ({
   title,
@@ -9,7 +7,6 @@ export const FeaturedProjectCard = ({
   description,
   prodLink,
   githubLink,
- 
   id,
 }) => {
   const { fallbackImg } = useGlobalContext();
@@ -44,8 +41,6 @@ export const FeaturedProjectCard = ({
             to={`projects/${id}`}
             className="text-gray-100 relative top-5 cursor-pointer"
           >
-            {/* {showMore ? "hide details" : "more details"}
-             */}
             more details
           </Link>
         </div>
@@ -53,18 +48,3 @@ export const FeaturedProjectCard = ({
     </>
   );
 };
-
-/*
-
- {showMore && (
-        <div>
-          {/* // details about project 
-          <div className="my-8 text-xl leading-10">
-            <p className="text-start px-8">{description}</p>
-          </div>
-          {/* // techlist 
-          <h4 className="text-3xl">Technologies Used</h4>
-          <TechList technologies={technologies} />
-        </div>
-      )}
-*/
