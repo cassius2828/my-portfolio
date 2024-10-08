@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { TechList } from "./TechList";
 import { useState } from "react";
-import ProjectDetailsModal from "../Modals/ProjectDetails";
+import ProjectDetailsModal from "./ProjectDetails";
 
 export const RegularProjectCard = ({
   title,

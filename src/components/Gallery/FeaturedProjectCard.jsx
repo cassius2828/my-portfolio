@@ -1,8 +1,7 @@
-import { useState } from "react";
-import { TechList } from "./TechList";
+
 import { useGlobalContext } from "../../context/useGlobalContext";
 import { Link } from "react-router-dom";
-import ProjectDetailsModal from "../Modals/ProjectDetails";
+
 
 export const FeaturedProjectCard = ({
   title,
@@ -10,9 +9,9 @@ export const FeaturedProjectCard = ({
   description,
   prodLink,
   githubLink,
-  technologies,
+ 
+  id,
 }) => {
-  const [showMore, setShowMore] = useState(false);
   const { fallbackImg } = useGlobalContext();
 
   return (
@@ -41,25 +40,16 @@ export const FeaturedProjectCard = ({
           </Link>
         </div>
         <div>
-          <span
-            onClick={() => setShowMore((prev) => !prev)}
+          <Link
+            to={`projects/${id}`}
             className="text-gray-100 relative top-5 cursor-pointer"
           >
-            {showMore ? "hide details" : "more details"}
-          </span>
+            {/* {showMore ? "hide details" : "more details"}
+             */}
+            more details
+          </Link>
         </div>
       </div>
-      {showMore && (
-        <ProjectDetailsModal
-          technologies={technologies}
-          img={img}
-          title={title}
-          description={description}
-          prodLink={prodLink}
-          githubLink={githubLink}
-          handleClose={() => setShowMore(false)}
-        />
-      )}
     </>
   );
 };

@@ -1,10 +1,12 @@
 import { createContext, useReducer } from "react";
+import { getProjectById } from "../service/projectsService";
 
 const GlobalContext = createContext();
 const initialState = {
   isLoading: false,
   featuredProjects: null,
   regularProjects: null,
+  showProject: {},
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -16,6 +18,8 @@ const reducer = (state, action) => {
       return { ...state, featuredProjects: action.payload };
     case "setRegularProjects":
       return { ...state, regularProjects: action.payload };
+    case "setShowProject":
+      return { ...state, showProject: action.payload };
     default:
       return state;
   }
@@ -23,7 +27,7 @@ const reducer = (state, action) => {
 
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { featuredProjects, regularProjects, isLoading } = state;
+  const { featuredProjects, regularProjects, isLoading,showProject } = state;
   const fallbackImg =
     "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg";
   const fetchProjects = async (actionType, serviceFn) => {
@@ -40,6 +44,22 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
+  const fetchProjectById = async (id) => {
+    dispatch({ type: "startLoading" });
+
+    try {
+      const data = await getProjectById(id);
+    
+      dispatch({ type: "setShowProject", payload: data });
+    } catch (err) {
+      console.error(err);
+      console.log(`Unable to fetch project with id of ${id}`);
+      dispatch({ type: "setShowProject", payload: {} });
+    } finally {
+      dispatch({ type: "stopLoading" });
+    }
+  };
+
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   };
@@ -50,7 +70,9 @@ export const GlobalProvider = ({ children }) => {
         featuredProjects,
         regularProjects,
         isLoading,
-        fallbackImg,scrollToTop
+        fallbackImg,
+        scrollToTop,
+        fetchProjectById,showProject
       }}
     >
       {children}

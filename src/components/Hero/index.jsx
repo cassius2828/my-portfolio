@@ -62,6 +62,7 @@ console.log(featuredProjects, ' <-- featured projects')
                   technologies={project.technologies}
                   prodLink={project.prodLink}
                   githubLink={project.githubLink}
+                  id={project._id}
                 />
               );
             })}
