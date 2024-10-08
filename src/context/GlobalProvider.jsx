@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from "react";
+import { createContext, useReducer } from "react";
 
 const GlobalContext = createContext();
 const initialState = {
@@ -39,6 +39,10 @@ export const GlobalProvider = ({ children }) => {
       dispatch({ type: "stopLoading" });
     }
   };
+
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
   return (
     <GlobalContext.Provider
       value={{
@@ -46,7 +50,7 @@ export const GlobalProvider = ({ children }) => {
         featuredProjects,
         regularProjects,
         isLoading,
-        fallbackImg,
+        fallbackImg,scrollToTop
       }}
     >
       {children}

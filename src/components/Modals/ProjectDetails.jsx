@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../../context/useGlobalContext";
 import { TechList } from "../Gallery/TechList";
+import { useEffect } from "react";
 
 const ProjectDetailsModal = ({
   img,
@@ -11,20 +12,24 @@ const ProjectDetailsModal = ({
   githubLink,
   handleClose,
 }) => {
-  const { fallbackImg } = useGlobalContext();
-
+  const { fallbackImg, scrollToTop } = useGlobalContext();
+  useEffect(() => {
+    scrollToTop();
+  }, []);
   return (
-    <div className="absolute w-screen">
-      <div className="w-screen h-screen fixed top-0 z-[60] bg-black"></div>
+    <>
+      <div className="w-screen h-screen fixed top-0 left-0 z-[60] flex items-start bg-black"></div>
 
-      <div className="absolute w-screen md:w-[75vw] top-0 -translate-y-1/3 z-[100] bg-gray-800 rounded-md p-8 text-xl flex flex-col items-center justify-center gap-8  ">
+      <div className="absolute left-1/2 -translate-x-1/2 top-0 w-screen md:w-[75vw] z-[100] bg-gray-800 rounded-md p-8 text-xl flex flex-col items-center justify-center gap-8  ">
         <span
           onClick={handleClose}
           className="absolute top-2 right-4 cursor-pointer text-5xl"
         >
           x
         </span>
-     <span className="absolute top-20 right-12 animate-bounce">scroll to see more &#x2193;</span>
+        <span className="absolute top-20 right-12 animate-bounce">
+          scroll to see more &#x2193;
+        </span>
 
         <h3 className="text-5xl font-bold">{title}</h3>
         <img
@@ -55,7 +60,7 @@ const ProjectDetailsModal = ({
           </Link>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default ProjectDetailsModal;
