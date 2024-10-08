@@ -42,3 +42,12 @@ button {
 .blur-bg {
   filter: blur(9px);
 }
+
+/* project cards */
+.project-card:first-child {
+  border-top: none;
+}
+
+.project-card:last-child {
+  border-bottom: none;
+}

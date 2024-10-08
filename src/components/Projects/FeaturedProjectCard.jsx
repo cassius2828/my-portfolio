@@ -13,7 +13,7 @@ export const FeaturedProjectCard = ({
 
   return (
     <>
-      <div className="project-card text-center rounded-lg relative flex justify-center flex-col items-center">
+      <div className="project-card text-center rounded-lg relative flex justify-center flex-col items-center ">
         <div className="project-content">
           <h3 className="text-2xl lg:text-3xl my-8">{title}</h3>
           <div className="w-[35rem] rounded-lg overflow-hidden relative shadow-lg hover:shadow-blue-lg">

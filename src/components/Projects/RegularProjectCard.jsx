@@ -11,7 +11,7 @@ export const RegularProjectCard = ({
 }) => {
   return (
     <>
-      <div className="project-card text-center  rounded-lg relative transition-all duration-300 ease-in-out hover:bg-gray-800">
+      <div className="project-card text-center  rounded-lg relative transition-all duration-300 ease-in-out hover:bg-gray-800 border-y md:border-none">
         <div className="project-content">
           <h3 className="text-3xl lg:text-6xl my-8">{title}</h3>
           <div className="w-full h-full rounded-lg overflow-hidden ">

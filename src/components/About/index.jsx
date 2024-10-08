@@ -18,28 +18,36 @@ const About = () => {
   return (
     <section id="about" className="h-screen w-full bg-[#080404]  relative">
       {/* banner */}
-      <div className="w-full bg-blue-500 p-12 flex items-center justify-around">
-        <div className="flex items-center justify-center gap-4">
-          <span className="text-3xl">1+ Years Expereince</span>
-          <FontAwesomeIcon className="text-3xl" icon={faLaptop} />
+      <div className="w-full bg-blue-500 py-12 md:p-12 flex items-center justify-around">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-center">
+          <span className="text-xl md:text-3xl">1+ Years Expereince</span>
+          <FontAwesomeIcon className="text-xl md:text-3xl" icon={faLaptop} />
         </div>
-        <div className="flex items-center justify-center gap-4">
-          <span className="text-3xl">Free Lance Experience</span>
-          <FontAwesomeIcon className="text-3xl" icon={faMoneyBill} />
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-center">
+          <span className="text-xl md:text-3xl">Free Lance Experience</span>
+          <FontAwesomeIcon className="text-xl md:text-3xl" icon={faMoneyBill} />
         </div>{" "}
-        <div className="flex items-center justify-center gap-4">
-          <span className="text-3xl">15+ certifications</span>
-          <FontAwesomeIcon className="text-3xl" icon={faCertificate} />
+        <div className="flex flex-col md:flex-row  items-center justify-center gap-4 text-center">
+          <span className="text-xl md:text-3xl">15+ certifications</span>
+          <FontAwesomeIcon
+            className="text-xl md:text-3xl"
+            icon={faCertificate}
+          />
         </div>{" "}
-        <div className="flex items-center justify-center gap-4">
-          <span className="text-3xl">General Assembly Graduate 2024</span>
-          <FontAwesomeIcon className="text-3xl" icon={faGraduationCap} />
+        <div className="flex flex-col md:flex-row  items-center justify-center gap-4 text-center">
+          <span className="text-xl md:text-3xl">
+            General Assembly Graduate 2024
+          </span>
+          <FontAwesomeIcon
+            className="text-xl md:text-3xl"
+            icon={faGraduationCap}
+          />
         </div>
       </div>
-      <div className="p-12 flex justify-center  ">
-        <div className="w-full md:w-1/3  mt-24">
-          <h2 className="text-5xl font-bold border-b pb-3">About Me</h2>
-          
+      <div className="p-12 flex flex-col lg:flex-row justify-center ">
+        <div className="w-full lg:w-1/3  mt-24">
+          <h2 className="text-4xl md:text-5xl font-bold border-b pb-3">About Me</h2>
+
           <p className="mt-4 text-2xl">
             I am a passionate software engineer with strong expertise in React,
             Express, MongoDB, PostgreSQL, and JavaScript. My skill set also
@@ -64,8 +72,8 @@ const About = () => {
             solutions.
           </p>
         </div>
-        <div className="w-full md:w-1/3 flex justify-center ml-20">
-          <img className="w-full" src="/images/api-programming.png" alt="" />
+        <div className=" md:w-1/3  justify-center md:ml-20 hidden lg:flex">
+          <img className="w-full object-contain" src="/images/api-programming.png" alt="3D programming icons, bright blue and smooth gray" />
         </div>
       </div>
     </section>

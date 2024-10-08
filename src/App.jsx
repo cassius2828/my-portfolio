@@ -3,7 +3,7 @@ import Footer from "./components/Footer";
 
 import Landing from "./components/Landing";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ProjectDetailsModal from "./components/Projects/ProjectDetails";
+import ShowProject from "./components/Projects/ShowProject";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/projects/:projectId" element={<ProjectDetailsModal />} />
+          <Route path="/projects/:projectId" element={<ShowProject />} />
         </Routes>
       </BrowserRouter>
       <Footer />

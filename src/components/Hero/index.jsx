@@ -22,19 +22,19 @@ const Hero = () => {
       <WavyBackground />
       <div className="flex flex-col items-center justify-between w-10/12 mx-auto relative z-20 ">
         {/* row 1 */}
-        <div className="w-full flex items-center justify-between p-12">
+        <div className="w-full flex items-center justify-between md:p-12">
           {/* col 1 */}
           <div>
-            <h1 className="text-[8rem] font-bold mt-6 mb-12 text-gray-100 leading-[8rem]">
+            <h1 className="text-4xl md:text-[8rem] font-bold mt-6 mb-12 text-gray-100 md:leading-[8rem]">
               Cassius
               <br /> Reynolds
             </h1>
-            <h2 className="text-4xl text-gray-100">Full-Stack Developer</h2>
+            <h2 className="text-2xl md:text-4xl text-gray-100">Full-Stack Developer</h2>
           </div>
           {/* col 2 */}
           <div className="flex flex-col items-center">
             <IconList />
-            <div className="rounded-xl overflow-hidden mt-20 w-96">
+            <div className="rounded-xl overflow-hidden mt-20 w-72 md:w-96">
               <img
                 className=""
                 src="https://cdn.prod.website-files.com/5fd2ba952bcd68835f2c8254/654553fedbede7976b97eaf5_Professional-5.remini-enhanced.webp"
@@ -45,7 +45,7 @@ const Hero = () => {
         </div>
         {/* row 2 */}
         <div className="w-full">
-          <h2 className="text-center text-6xl font-bold ">Featured Projects</h2>
+          <h2 className="text-center text-4xl md:text-6xl font-bold mt-12 md:mt-0">Featured Projects</h2>
           <hr className="w-1/5 mx-auto h-3 bg-gray-100 border-none mt-5" />
 
           {/* featured row */}
