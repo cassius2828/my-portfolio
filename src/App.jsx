@@ -3,7 +3,7 @@ import Footer from "./components/Footer";
 
 import Landing from "./components/Landing";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ProjectDetailsModal from "./components/Gallery/ProjectDetails";
+import ProjectDetailsModal from "./components/Projects/ProjectDetails";
 
 function App() {
   return (

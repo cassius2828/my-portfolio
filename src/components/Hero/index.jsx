@@ -2,7 +2,7 @@
 import  { useEffect } from "react";
 import { WavyBackground } from "../ui/wavy-background";
 import IconList from "../SocialMedia/IconList";
-import { FeaturedProjectCard } from "../Gallery/FeaturedProjectCard";
+import { FeaturedProjectCard } from "../Projects/FeaturedProjectCard";
 import { useGlobalContext } from "../../context/useGlobalContext";
 import { getFeaturedProjects } from "../../service/projectsService";
 

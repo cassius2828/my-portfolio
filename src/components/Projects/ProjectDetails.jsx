@@ -13,7 +13,7 @@ const ShowProject = () => {
 
   useEffect(() => {
     scrollToTop();
-    console.log(showProject)
+
     fetchProjectById(projectId);
   }, []);
   if (isLoading) return <h1>loading...</h1>;
