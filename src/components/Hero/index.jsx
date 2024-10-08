@@ -1,5 +1,5 @@
 // src/components/Hero.jsx
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import { WavyBackground } from "../ui/wavy-background";
 import IconList from "../SocialMedia/IconList";
 import { FeaturedProjectCard } from "../Gallery/FeaturedProjectCard";
@@ -8,7 +8,8 @@ import { getFeaturedProjects } from "../../service/projectsService";
 
 const Hero = () => {
   const { fetchProjects, featuredProjects, isLoading } = useGlobalContext();
-
+console.log(fetchProjects, ' <-- fetch projects func')
+console.log(featuredProjects, ' <-- featured projects')
   useEffect(() => {
     fetchProjects("setFeaturedProjects", getFeaturedProjects);
   }, []);
@@ -61,6 +62,7 @@ const Hero = () => {
                   technologies={project.technologies}
                   prodLink={project.prodLink}
                   githubLink={project.githubLink}
+                  id={project._id}
                 />
               );
             })}

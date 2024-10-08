@@ -30,3 +30,14 @@ export const getRegularProjects = async () => {
     console.log(`Unable to get regular projects from server`);
   }
 };
+
+export const getProjectById = async (id) => {
+  console.log(id, ' <-- id in serveice')
+  try {
+    const response = await axios.get(`${BASE_URL}/projects/${id}`);
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    console.log(`Unable to get project with id of ${id} from server`);
+  }
+};
