@@ -1,7 +1,52 @@
 // src/components/Contact.jsx
-import React from "react";
-
+import axios from "axios";
+import { useState } from "react";
+const initialFormData = {
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+  affiliation: "",
+  connection: "recruiter",
+};
+const url = `http://localhost:3000/contact/contact-form-submission`;
 const Contact = () => {
+  const [formData, setFormData] = useState(initialFormData);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(url, formData);
+
+      if (response.status === 200) {
+        setMessage("Email successfully sent to cassius.reynolds.dev@gmail.com");
+        setError("");
+        setFormData(initialFormData)
+      } else {
+        setMessage("");
+        setError("Failed to send email.");
+      }
+    } catch (err) {
+      setMessage("");
+
+      if (err.response) {
+        // Server responded with a status other than 200 range
+        setError(
+          `Error: ${err.response.data.error || "Unknown error occurred."}`
+        );
+      } else if (err.request) {
+        setError("Error: No response from the server.");
+      } else {
+        setError(`Error: ${err.message}`);
+      }
+    }
+  };
+
+  const handleInputUpdate = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
   return (
     <section id="contact" className="h-screen bg-gray-700 relative">
       <div className="absolute h-full w-full bg-[#080404]">
@@ -61,24 +106,35 @@ const Contact = () => {
           </div>
           {/* form */}
           <form className="mt-4 w-full max-w-lg min-h-[35rem] bg-gray-800 p-8 rounded-md shadow-lg">
+            {message && <span className="text-green-500">{message}</span>}
+            {error && <span className="text-red-500">{error}</span>}
             <div className="mb-4">
               <label className="block text-gray-200 mb-2">Name</label>
               <input
+                onChange={handleInputUpdate}
+                value={formData.name}
                 type="text"
+                name="name"
                 className="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white"
               />
             </div>
             <div className="mb-4">
               <label className="block text-gray-200 mb-2">Email</label>
               <input
+                value={formData.email}
+                onChange={handleInputUpdate}
                 type="email"
+                name="email"
                 className="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white"
               />
             </div>
             <div className="mb-4">
               <label className="block text-gray-200 mb-2">Subject</label>
               <input
+                onChange={handleInputUpdate}
+                value={formData.subject}
                 type="text"
+                name="subject"
                 className="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white"
               ></input>
             </div>
@@ -87,19 +143,32 @@ const Contact = () => {
                 Company / Affiliation
               </label>
               <input
+                onChange={handleInputUpdate}
+                value={formData.affiliation}
                 type="text"
+                name="affiliation"
                 className="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white"
               />
             </div>
             <div className="mb-4">
               <label className="block text-gray-200 mb-2">Message</label>
-              <textarea className="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white"></textarea>
+              <textarea
+                name="message"
+                onChange={handleInputUpdate}
+                value={formData.message}
+                className="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white"
+              ></textarea>
             </div>
             <div className="mb-4">
               <label className="block text-gray-200 mb-2">
                 Your Role or Connection
               </label>
-              <select className="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white">
+              <select
+                onChange={handleInputUpdate}
+                value={formData.connection}
+                name="connection"
+                className="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white"
+              >
                 <option value="recruiter">recruiter</option>
                 <option value="freelance client">freelance client</option>
                 <option value="collaborative developer">
@@ -109,6 +178,7 @@ const Contact = () => {
               </select>
             </div>
             <button
+              onClick={handleSubmit}
               type="submit"
               className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition-colors"
             >
