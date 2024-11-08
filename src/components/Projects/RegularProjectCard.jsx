@@ -15,7 +15,7 @@ export const RegularProjectCard = ({
         <div className="project-content">
           <h3 className="text-3xl lg:text-6xl my-8">{title}</h3>
           <div className="w-full h-full rounded-lg overflow-hidden ">
-            <p className="px-8">{description}</p>{" "}
+            <p className="px-8 text-xl">{description}</p>{" "}
             {false && (
               // details about project
               <div className="absolute z-30 w-full top-1/2 translate-y-1/2 text-gray-200 pointer-events-none"></div>

@@ -60,37 +60,37 @@ const Contact = () => {
           {/* contact info */}
           <div className="rounded-md bg-gray-800 w-full md:w-auto p-8 h-[35rem] text-gray-100 shadow-lg flex items-center gap-4">
             <div className="w-1/2 md:w-full h-full flex flex-col justify-center gap-12">
-              <p className="mb-4 text-xl">
-                <span className="text-2xl font-semibold">Cell:</span> (707)
+              <p className="mb-4 text-xl md:text-2xl">
+                <span className="text-2xl md:text-3xl font-semibold">Cell:</span> (707)
                 724-1815
               </p>
               <p className="mb-4">
-                <span className="text-2xl font-semibold">Email:</span>{" "}
+                <span className="text-2xl md:text-3xl font-semibold">Email:</span>{" "}
                 <a
                   href="mailto:cassius.reynolds.dev@gmail.com"
-                  className="text-blue-400 hover:underline text-xl"
+                  className="text-blue-400 hover:underline text-xl md:text-2xl"
                 >
                   cassius.reynolds.dev@gmail.com
                 </a>
               </p>
               <p className="mb-4">
-                <span className="text-2xl font-semibold">LinkedIn:</span>{" "}
+                <span className="text-2xl md:text-3xl font-semibold">LinkedIn:</span>{" "}
                 <a
                   href=""
                   target="_blank"
                   rel="noreferrer"
-                  className="text-blue-400 hover:underline text-xl"
+                  className="text-blue-400 hover:underline text-xl md:text-2xl"
                 >
                   Cassius Reynolds
                 </a>
               </p>
               <p>
-                <span className="text-2xl font-semibold">GitHub:</span>{" "}
+                <span className="text-2xl md:text-3xl font-semibold">GitHub:</span>{" "}
                 <a
                   href="https://github.com/cassius2828"
                   target="_blank"
                   rel="noreferrer"
-                  className="text-blue-400 hover:underline text-xl"
+                  className="text-blue-400 hover:underline text-xl md:text-2xl"
                 >
                   github/cassius2828
                 </a>
@@ -109,7 +109,7 @@ const Contact = () => {
             {message && <span className="text-green-500">{message}</span>}
             {error && <span className="text-red-500">{error}</span>}
             <div className="mb-4">
-              <label className="block text-gray-200 mb-2">Name</label>
+              <label className="block text-gray-200 mb-2 md:text-xl">Name</label>
               <input
                 onChange={handleInputUpdate}
                 value={formData.name}
@@ -119,7 +119,7 @@ const Contact = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-200 mb-2">Email</label>
+              <label className="block text-gray-200 mb-2 md:text-xl">Email</label>
               <input
                 value={formData.email}
                 onChange={handleInputUpdate}
@@ -129,7 +129,7 @@ const Contact = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-200 mb-2">Subject</label>
+              <label className="block text-gray-200 mb-2 md:text-xl">Subject</label>
               <input
                 onChange={handleInputUpdate}
                 value={formData.subject}
@@ -139,7 +139,7 @@ const Contact = () => {
               ></input>
             </div>
             <div className="mb-4">
-              <label className="block text-gray-200 mb-2">
+              <label className="block text-gray-200 mb-2 md:text-xl">
                 Company / Affiliation
               </label>
               <input
@@ -151,7 +151,7 @@ const Contact = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-200 mb-2">Message</label>
+              <label className="block text-gray-200 mb-2 md:text-xl">Message</label>
               <textarea
                 name="message"
                 onChange={handleInputUpdate}
@@ -160,14 +160,14 @@ const Contact = () => {
               ></textarea>
             </div>
             <div className="mb-4">
-              <label className="block text-gray-200 mb-2">
+              <label className="block text-gray-200 mb-2 md:text-xl">
                 Your Role or Connection
               </label>
               <select
                 onChange={handleInputUpdate}
                 value={formData.connection}
                 name="connection"
-                className="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white"
+                className="w-full p-2 border border-gray-600 rounded bg-gray-700 text-white md:text-xl"
               >
                 <option value="recruiter">recruiter</option>
                 <option value="freelance client">freelance client</option>
@@ -180,7 +180,7 @@ const Contact = () => {
             <button
               onClick={handleSubmit}
               type="submit"
-              className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition-colors"
+              className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition-colors md:text-xl"
             >
               Submit
             </button>

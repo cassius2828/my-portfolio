@@ -46,9 +46,9 @@ const About = () => {
       </div>
       <div className="p-12 flex flex-col lg:flex-row justify-center ">
         <div className="w-full lg:w-1/3  mt-24">
-          <h2 className="text-4xl md:text-5xl font-bold border-b pb-3">About Me</h2>
+          <h2 className="text-4xl md:text-6xl font-bold border-b pb-3">About Me</h2>
 
-          <p className="mt-4 text-2xl">
+          <p className="mt-4 text-2xl md:text-3xl md:leading-10">
             I am a passionate software engineer with strong expertise in React,
             Express, MongoDB, PostgreSQL, and JavaScript. My skill set also
             includes Tailwind, CSS, HTML, SASS, Bootstrap, and building RESTful
