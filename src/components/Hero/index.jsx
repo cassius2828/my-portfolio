@@ -5,6 +5,7 @@ import IconList from "../SocialMedia/IconList";
 import { FeaturedProjectCard } from "../Projects/FeaturedProjectCard";
 import { useGlobalContext } from "../../context/useGlobalContext";
 import { getFeaturedProjects } from "../../service/projectsService";
+import LoaderX from "../Reuseables/LoaderX";
 
 const Hero = () => {
   const { fetchProjects, featuredProjects, isLoading } = useGlobalContext();
@@ -13,7 +14,12 @@ const Hero = () => {
   useEffect(() => {
     fetchProjects("setFeaturedProjects", getFeaturedProjects);
   }, []);
-  if (isLoading) return <h1>loading...</h1>;
+  if (isLoading)
+    return (
+      <div className="w-full justify-center flex mt-24">
+        <LoaderX size={'xl'} />
+      </div>
+    );
   return (
     <section
       id="hero"
@@ -29,7 +35,9 @@ const Hero = () => {
               Cassius
               <br /> Reynolds
             </h1>
-            <h2 className="text-2xl md:text-4xl text-gray-100">Full-Stack Developer</h2>
+            <h2 className="text-2xl md:text-4xl text-gray-100">
+              Full-Stack Developer
+            </h2>
           </div>
           {/* col 2 */}
           <div className="flex flex-col items-center">
@@ -45,7 +53,9 @@ const Hero = () => {
         </div>
         {/* row 2 */}
         <div className="w-full">
-          <h2 className="text-center text-4xl md:text-6xl font-bold mt-12 md:mt-0">Featured Projects</h2>
+          <h2 className="text-center text-4xl md:text-6xl font-bold mt-12 md:mt-0">
+            Featured Projects
+          </h2>
           <hr className="w-1/5 mx-auto h-3 bg-gray-100 border-none mt-5" />
 
           {/* featured row */}

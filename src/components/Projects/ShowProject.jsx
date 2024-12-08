@@ -2,6 +2,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useGlobalContext } from "../../context/useGlobalContext";
 import { TechList } from "./TechList";
 import { useEffect } from "react";
+import LoaderX from "../Reuseables/LoaderX";
 
 const ShowProject = () => {
   const { fallbackImg, scrollToTop, showProject, fetchProjectById, isLoading } =
@@ -16,7 +17,8 @@ const ShowProject = () => {
 
     fetchProjectById(projectId);
   }, []);
-  if (isLoading) return <h1>loading...</h1>;
+  if (isLoading) return <LoaderX />;
+
   return (
     <>
       <div className="w-screen h-screen fixed top-0 left-0 z-[60] flex items-start bg-black"></div>

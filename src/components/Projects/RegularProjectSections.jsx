@@ -3,6 +3,7 @@ import ParabolaGradient from "../Backgrounds/ParabolaGradient";
 import { RegularProjectCard } from "./RegularProjectCard";
 import { useGlobalContext } from "../../context/useGlobalContext";
 import { getRegularProjects } from "../../service/projectsService";
+import LoaderText from "../Reuseables/LoaderText";
 
 const RegularProjectSections = () => {
   const { fetchProjects, regularProjects, isLoading } = useGlobalContext();
@@ -11,7 +12,7 @@ const RegularProjectSections = () => {
     fetchProjects("setRegularProjects", getRegularProjects);
   }, []);
 
-  if (isLoading) return <h1 className="text-8xl">Loading...</h1>;
+  if (isLoading) return <div className="w-full flex justify-center my-12"> <LoaderText/></div>;
   return (
     <section className="relative min-h-screen w-screen">
       <ParabolaGradient />
