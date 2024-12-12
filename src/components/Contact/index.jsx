@@ -22,10 +22,16 @@ const Contact = () => {
       if (response.status === 200) {
         setMessage("Email successfully sent to cassius.reynolds.dev@gmail.com");
         setError("");
-        setFormData(initialFormData)
+        setFormData(initialFormData);
+        setTimeout(() => {
+          setMessage("");
+        }, 3000);
       } else {
         setMessage("");
         setError("Failed to send email.");
+        setTimeout(() => {
+          setError("");
+        }, 3000);
       }
     } catch (err) {
       setMessage("");
@@ -61,11 +67,15 @@ const Contact = () => {
           <div className="rounded-md bg-gray-800 w-full md:w-auto p-8 h-[35rem] text-gray-100 shadow-lg flex items-center gap-4">
             <div className="w-1/2 md:w-full h-full flex flex-col justify-center gap-12">
               <p className="mb-4 text-xl md:text-2xl">
-                <span className="text-2xl md:text-3xl font-semibold">Cell:</span> (707)
-                724-1815
+                <span className="text-2xl md:text-3xl font-semibold">
+                  Cell:
+                </span>{" "}
+                (707) 724-1815
               </p>
               <p className="mb-4">
-                <span className="text-2xl md:text-3xl font-semibold">Email:</span>{" "}
+                <span className="text-2xl md:text-3xl font-semibold">
+                  Email:
+                </span>{" "}
                 <a
                   href="mailto:cassius.reynolds.dev@gmail.com"
                   className="text-blue-400 hover:underline text-xl md:text-2xl"
@@ -74,7 +84,9 @@ const Contact = () => {
                 </a>
               </p>
               <p className="mb-4">
-                <span className="text-2xl md:text-3xl font-semibold">LinkedIn:</span>{" "}
+                <span className="text-2xl md:text-3xl font-semibold">
+                  LinkedIn:
+                </span>{" "}
                 <a
                   href=""
                   target="_blank"
@@ -85,7 +97,9 @@ const Contact = () => {
                 </a>
               </p>
               <p>
-                <span className="text-2xl md:text-3xl font-semibold">GitHub:</span>{" "}
+                <span className="text-2xl md:text-3xl font-semibold">
+                  GitHub:
+                </span>{" "}
                 <a
                   href="https://github.com/cassius2828"
                   target="_blank"
@@ -109,7 +123,9 @@ const Contact = () => {
             {message && <span className="text-green-500">{message}</span>}
             {error && <span className="text-red-500">{error}</span>}
             <div className="mb-4">
-              <label className="block text-gray-200 mb-2 md:text-xl">Name</label>
+              <label className="block text-gray-200 mb-2 md:text-xl">
+                Name
+              </label>
               <input
                 onChange={handleInputUpdate}
                 value={formData.name}
@@ -119,7 +135,9 @@ const Contact = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-200 mb-2 md:text-xl">Email</label>
+              <label className="block text-gray-200 mb-2 md:text-xl">
+                Email
+              </label>
               <input
                 value={formData.email}
                 onChange={handleInputUpdate}
@@ -129,7 +147,9 @@ const Contact = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-200 mb-2 md:text-xl">Subject</label>
+              <label className="block text-gray-200 mb-2 md:text-xl">
+                Subject
+              </label>
               <input
                 onChange={handleInputUpdate}
                 value={formData.subject}
@@ -151,7 +171,9 @@ const Contact = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-200 mb-2 md:text-xl">Message</label>
+              <label className="block text-gray-200 mb-2 md:text-xl">
+                Message
+              </label>
               <textarea
                 name="message"
                 onChange={handleInputUpdate}
