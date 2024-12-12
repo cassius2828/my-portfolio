@@ -52,7 +52,7 @@ const About = () => {
             I am a passionate software engineer with strong expertise in React,
             Express, MongoDB, PostgreSQL, and JavaScript. My skill set also
             includes Tailwind, CSS, HTML, SASS, Bootstrap, and building RESTful
-            APIs. Additionally, I have a working knowledge of Python, Django,
+            APIs. Additionally, I have a working knowledge of Python, Django, Remix, Nextjs,
             Cypress, TypeScript, AWS, system design, cloud infrastructure,
             GraphQL, and deployment processes.
             <br />
