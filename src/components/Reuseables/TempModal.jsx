@@ -1,8 +1,8 @@
 const TempModal = ({ setShowGuestModal }) => {
   return (
     <div className="bg-black/30 h-screen w-screen fixed top-0 left-0 z-50 flex justify-center items-center ">
-      <div className="w-10/12 max-w-[50rem] mx-auto max-h-96 bg-gray-100 text-gray-900 p-6 rounded-lg shadow-lg relative fadeIn">
-        <h2 className="text-xl font-bold mb-4 text-center">
+      <div className="w-10/12 max-w-[50rem] mx-auto max-h-96 bg-gray-100 text-gray-900 text-xl p-6 rounded-lg shadow-lg relative fadeIn">
+        <h2 className="text-2xl font-bold mb-4 text-center">
           Guest Login Information
         </h2>
         <p className="mb-4 text-gray-700">
