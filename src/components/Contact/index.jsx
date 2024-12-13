@@ -112,8 +112,8 @@ const Contact = () => {
             </div>
             <div className="w-1/2 md:w-full">
               <img
-                className="w-80 mt-5"
-                src="https://cdn.prod.website-files.com/5fd2ba952bcd68835f2c8254/654553fedbede7976b97eaf5_Professional-5.remini-enhanced.webp"
+                className="w-80 mt-5 object-cover"
+                src="/images/headshot.webp"
                 alt=""
               />
             </div>

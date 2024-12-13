@@ -9,8 +9,6 @@ import LoaderX from "../Reuseables/LoaderX";
 
 const Hero = () => {
   const { fetchProjects, featuredProjects, isLoading } = useGlobalContext();
-  console.log(fetchProjects, " <-- fetch projects func");
-  console.log(featuredProjects, " <-- featured projects");
   useEffect(() => {
     fetchProjects("setFeaturedProjects", getFeaturedProjects);
   }, []);
@@ -44,8 +42,8 @@ const Hero = () => {
             <IconList />
             <div className="rounded-xl overflow-hidden mt-20 w-72 md:w-96">
               <img
-                className=""
-                src="https://cdn.prod.website-files.com/5fd2ba952bcd68835f2c8254/654553fedbede7976b97eaf5_Professional-5.remini-enhanced.webp"
+                className="object-cover"
+                src="/images/headshot.webp"
                 alt="Cassius Reynolds Headshot"
               />
             </div>
