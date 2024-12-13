@@ -10,7 +10,7 @@ import { faMoneyBill } from "@fortawesome/free-solid-svg-icons/faMoneyBill";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const idealBio = `I am a passionate software engineer with strong expertise in React, Express, MongoDB, PostgreSQL, and JavaScript. My skill set also includes Tailwind, CSS, HTML, SASS, Bootstrap, and building RESTful APIs. Additionally, I have a working knowledge of Python, Django, Cypress, TypeScript, AWS, system design, cloud infrastructure, GraphQL, and deployment processes.
 
-Since starting my coding journey in December 2022, I’ve graduated from General Assembly’s Software Engineering Bootcamp (2024), earned over 15 industry-recognized certifications, and completed numerous real-world freelance projects. I bring team-oriented skills, honed through collaboration with mid- and senior-level engineers on various group projects, along with managerial experience from previous roles.
+Since starting my coding journey in December 2022, I’ve graduated from General Assembly’s Software Engineering Bootcamp (2024), earned over 5 programming certifications, and completed numerous real-world freelance projects. I bring team-oriented skills, honed through collaboration with mid- and senior-level engineers on various group projects, along with managerial experience from previous roles.
 
 I hold a BA in Communication Studies and plan to further my education with a BS in Computer Science. I’m continuously refining my skills while contributing to ongoing freelance projects, and I’m driven to build efficient, scalable solutions.
 `;
@@ -28,7 +28,7 @@ const About = () => {
           <FontAwesomeIcon className="text-xl md:text-3xl" icon={faMoneyBill} />
         </div>{" "}
         <div className="flex flex-col md:flex-row  items-center justify-center gap-4 text-center">
-          <span className="text-xl md:text-3xl">15+ certifications</span>
+          <span className="text-xl md:text-3xl">5+ certifications</span>
           <FontAwesomeIcon
             className="text-xl md:text-3xl"
             icon={faCertificate}
@@ -58,8 +58,7 @@ const About = () => {
             <br />
             <br />
             Since starting my coding journey in December 2022, I’ve graduated
-            from General Assembly’s Software Engineering Bootcamp (2024), earned
-            over 15 industry-recognized certifications, and completed numerous
+            from General Assembly’s Software Engineering Bootcamp (2024), earned 5 programming certifications, currently working on adding another 4, and completed numerous
             real-world freelance projects. I bring team-oriented skills, honed
             through collaboration with mid- and senior-level engineers on
             various group projects, along with managerial experience from
