@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 import { getProjectById } from "../service/projectsService";
 
 const GlobalContext = createContext();
@@ -27,7 +27,9 @@ const reducer = (state, action) => {
 
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { featuredProjects, regularProjects, isLoading,showProject } = state;
+  const [showGuestModal, setShowGuestModal] = useState(true);
+
+  const { featuredProjects, regularProjects, isLoading, showProject } = state;
   const fallbackImg =
     "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg";
   const fetchProjects = async (actionType, serviceFn) => {
@@ -49,7 +51,7 @@ export const GlobalProvider = ({ children }) => {
 
     try {
       const data = await getProjectById(id);
-    
+
       dispatch({ type: "setShowProject", payload: data });
     } catch (err) {
       console.error(err);
@@ -61,7 +63,18 @@ export const GlobalProvider = ({ children }) => {
   };
 
   const scrollToTop = () => {
-    window.scrollTo(0, 0);
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion) {
+      window.scrollTo(0, 0);
+    } else {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
   };
   return (
     <GlobalContext.Provider
@@ -72,7 +85,10 @@ export const GlobalProvider = ({ children }) => {
         isLoading,
         fallbackImg,
         scrollToTop,
-        fetchProjectById,showProject
+        fetchProjectById,
+        showProject,
+        showGuestModal,
+        setShowGuestModal,
       }}
     >
       {children}

@@ -1,5 +1,7 @@
 // src/components/Footer.jsx
-import React from 'react';
+import { faArrowCircleUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 
 const Footer = () => {
   return (
