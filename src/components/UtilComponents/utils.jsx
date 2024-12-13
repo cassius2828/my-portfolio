@@ -7,7 +7,7 @@ export const FixedUtilComponents = () => {
 
   return (
     <>
-      <button onClick={scrollToTop} className="fixed right-7 bottom-7">
+      <button onClick={scrollToTop} className="fixed right-7 bottom-7 z-50">
         <FontAwesomeIcon
           className="hover:text-blue-300 transition-colors"
           size="2xl"
