@@ -25,12 +25,12 @@ export const FeaturedProjectCard = ({
           </div>
         </div>
         <div className="flex items-center justify-center gap-4 mt-6">
-          <Link to={prodLink || "/"}>
+          <Link target="_blank" rel="noreferrer" to={prodLink || "/"}>
             <button className="p-4 shadow-md rounded cursor-pointer text-blue-500 border border-blue-500 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-blue-500 hover:text-white my-2 text-2xl">
               See Live!
             </button>
           </Link>
-          <Link to={githubLink || "/"}>
+          <Link target="_blank" rel="noreferrer"  to={githubLink || "/"}>
             <button className="p-4 shadow-md rounded cursor-pointer text-blue-500 border border-blue-500 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-blue-500 hover:text-white my-2 text-2xl">
               View Github
             </button>

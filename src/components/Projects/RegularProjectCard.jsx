@@ -23,12 +23,12 @@ export const RegularProjectCard = ({
           </div>
         </div>
         <div className=" flex justify-center gap-6">
-          <Link className={prodLink ? '':'cursor-not-allowed'} to={prodLink || "/"}>
+          <Link target="_blank" rel="noreferrer"  className={prodLink ? '':'cursor-not-allowed'} to={prodLink || "/"}>
             <button className={`${prodLink ? 'text-blue-500  border-blue-500':'text-gray-500  border-gray-500 pointer-events-none'} p-4 shadow-md rounded cursor-pointer  border transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-blue-500 hover:text-white my-12 text-2xl`}>
               See Live!
             </button>
           </Link>
-          <Link to={githubLink || "/"}>
+          <Link target="_blank" rel="noreferrer"  to={githubLink || "/"}>
             <button className="p-4 shadow-md rounded cursor-pointer text-blue-500 border border-blue-500 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-blue-500 hover:text-white my-12 text-2xl">
               View Github
             </button>
