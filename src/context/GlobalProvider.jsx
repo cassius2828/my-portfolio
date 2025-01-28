@@ -1,5 +1,6 @@
 import { createContext, useReducer, useState } from "react";
 import { getProjectById } from "../service/projectsService";
+import { getAllBlogs } from "../service/blogsService";
 
 const GlobalContext = createContext();
 const initialState = {
@@ -28,10 +29,26 @@ const reducer = (state, action) => {
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [showGuestModal, setShowGuestModal] = useState(true);
-
+  const [blogs, setBlogs] = useState([]);
+  const [showBlog, setShowBlog] = useState({});
   const { featuredProjects, regularProjects, isLoading, showProject } = state;
   const fallbackImg =
     "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg";
+
+  const fetchBlogs = async () => {
+    dispatch({ type: "startLoading" });
+
+    try {
+      const data = await getAllBlogs();
+
+      setBlogs(data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      dispatch({ type: "stopLoading" });
+    }
+  };
+
   const fetchProjects = async (actionType, serviceFn) => {
     dispatch({ type: "startLoading" });
     try {
@@ -76,6 +93,9 @@ export const GlobalProvider = ({ children }) => {
       });
     }
   };
+
+ 
+
   return (
     <GlobalContext.Provider
       value={{
@@ -89,6 +109,11 @@ export const GlobalProvider = ({ children }) => {
         showProject,
         showGuestModal,
         setShowGuestModal,
+        dispatch,
+        fetchBlogs,
+        blogs,
+        setShowBlog,
+        showBlog,
       }}
     >
       {children}

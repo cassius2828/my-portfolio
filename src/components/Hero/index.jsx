@@ -11,11 +11,15 @@ const Hero = () => {
   const { fetchProjects, featuredProjects, isLoading } = useGlobalContext();
   useEffect(() => {
     fetchProjects("setFeaturedProjects", getFeaturedProjects);
+    setTimeout(() => {
+      if (featuredProjects.length === 0)
+        fetchProjects("setFeaturedProjects", getFeaturedProjects);
+    }, 5000);
   }, []);
   if (isLoading)
     return (
       <div className="w-full justify-center flex mt-24">
-        <LoaderX size={'xl'} />
+        <LoaderX size={"xl"} />
       </div>
     );
   return (
@@ -39,7 +43,6 @@ const Hero = () => {
           </div>
           {/* col 2 */}
           <div className="flex flex-col items-center">
-            <IconList />
             <div className="rounded-xl overflow-hidden mt-20 w-72 md:w-96">
               <img
                 className="object-cover"
