@@ -35,7 +35,6 @@ const Login = () => {
     e.preventDefault();
     try {
       const data = await login(formData); // TODO build login service function
-      console.log(data, " <data in handleSubmit /Login.jsx");
       if (data.token) {
         setUser(data.token);
         navigate("/");
