@@ -68,7 +68,7 @@ export const updateBlogNoImg = async (formData, blogId) => {
       formData,
       options
     );
-
+console.log(response, ' <updateBlogNoImg /blogsService.js');
     return response.data;
   } catch (err) {
     console.error(err);
@@ -103,7 +103,6 @@ export const deleteBlog = async (blogId) => {
 export const getBlog = async (blogId) => {
   try {
     const response = await axios.get(`${BLOG_BASE_URL}/${blogId}`);
-    console.log(response, ' <blogId one blog /blogsService.js');
     return response.data;
   } catch (err) {
     console.error("Error getting blog:", err);

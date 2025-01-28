@@ -40,7 +40,7 @@ export const GlobalProvider = ({ children }) => {
 
     try {
       const data = await getAllBlogs();
-      console.log(data, " <-- data from DisplayBlogs.jsx");
+
       setBlogs(data);
     } catch (err) {
       console.error(err);
@@ -93,6 +93,8 @@ export const GlobalProvider = ({ children }) => {
       });
     }
   };
+
+ 
 
   return (
     <GlobalContext.Provider

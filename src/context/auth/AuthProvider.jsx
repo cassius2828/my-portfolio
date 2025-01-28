@@ -10,7 +10,6 @@ export const AuthProvider = ({ children }) => {
   /////////////////////
   function handleLogout() {
     localStorage.removeItem("token");
-
     setUser(null);
   }
 
@@ -22,7 +21,7 @@ export const AuthProvider = ({ children }) => {
     // fetchTargetUser(userId);
     const showUserName =
       userId !== user._id && (targetedDisplayName || targetedUsername) + "'s";
-    console.log(showUserName, " <--show user name function result");
+
     return showUserName;
   };
   return (

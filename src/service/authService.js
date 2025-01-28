@@ -28,7 +28,7 @@ export async function register(formData) {
       // store the token! in localstorage
       localStorage.setItem("token", data.token);
       const user = JSON.parse(atob(data.token.split(".")[1]));
-      console.log(user, " <- user in signup!");
+
       return user.user;
     }
   } catch (err) {

@@ -24,6 +24,7 @@ function App() {
           <Route path="/auth/login" element={<Login />} />
           <Route path="/blogs" element={<DisplayBlogs />} />
           <Route path="/blogs/new" element={<BlogManager />} />
+          <Route path="/blogs/:blogId/edit" element={<BlogManager />} />
           <Route path="/blogs/:blogId" element={<ShowBlog />} />
           <Route
             path="/projects/:projectId/edit"

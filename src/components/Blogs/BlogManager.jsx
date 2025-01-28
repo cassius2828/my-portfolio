@@ -16,42 +16,47 @@ import { useGlobalContext } from "../../context/useGlobalContext";
 import { useAuthContext } from "../../context/auth/useAuthContext";
 // Components
 import PromptSignIn from "../Reuseables/PromptSignIn";
+import NotAuthorized from "../Reuseables/NotAuthorized";
 // outside constants | rich text vars
-const modules = {
-  toolbar: [
-    [{ header: "1" }, { header: "2" }, { font: [] }],
-    [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [{ list: "ordered" }, { list: "bullet" }],
-    [{ indent: "-1" }, { indent: "+1" }],
-    ["link", "image", "video"],
-    ["clean"],
-    [{ color: [] }, { background: [] }],
-    [{ align: [] }],
-    [{ direction: "rtl" }],
-  ],
-};
-const formats = [
-  "header",
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "list",
-  "bullet",
-  "indent",
-  "link",
-  "image",
-  "video",
-  "color",
-  "background",
-  "align",
-  "direction",
-];
+
 const BlogManager = () => {
+  const modules = {
+    toolbar: [
+      [{ header: "1" }, { header: "2" }, { font: [] }],
+      [{ size: [] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      ["blockquote", "code-block"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      [{ indent: "-1" }, { indent: "+1" }],
+      ["link", "image", "video"],
+      ["clean"],
+
+      [{ color: [] }, { background: [] }],
+      [{ align: [] }],
+      [{ direction: "rtl" }],
+    ],
+  };
+  const formats = [
+    "header",
+    "font",
+    "size",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "code-block",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+    "video",
+    "color",
+    "background",
+    "align",
+    "direction",
+  ];
   const [title, setTitle] = useState("");
   const [img, setImg] = useState("");
   const [imgPreview, setImgPreview] = useState("");
@@ -62,6 +67,56 @@ const BlogManager = () => {
   // hooks
   const navigate = useNavigate();
   const { blogId } = useParams();
+
+  const quillRef = useRef(null); // Ref for the Quill editor
+  const fileInputRef = useRef(null); // Ref for the hidden file input
+
+  // Handle file selection and image upload
+  const handleImageUpload = async (file) => {
+    // Example: Replace this with your backend upload logic
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        const { url } = await response.json(); // URL of the uploaded image
+        const quill = quillRef.current.getEditor(); // Access Quill editor instance
+        const range = quill.getSelection(); // Get current cursor position
+        quill.insertEmbed(range.index, "image", url); // Insert the uploaded image URL
+      } else {
+        console.error("Image upload failed");
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+
+  // Listen for changes in the hidden file input
+  useEffect(() => {
+    const input = fileInputRef.current;
+
+    const handleChange = (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        handleImageUpload(file);
+      }
+    };
+
+    if (input) {
+      input.addEventListener("change", handleChange);
+    }
+
+    return () => {
+      if (input) {
+        input.removeEventListener("change", handleChange);
+      }
+    };
+  }, []);
 
   ///////////////////////////
   // Handle Submit
@@ -77,7 +132,7 @@ const BlogManager = () => {
       dispatch({ type: "startLoading" });
       try {
         await updateBlogNoImg(formData, blogId);
-        navigate(`/blogs/user-blogs/${user._id}`);
+        navigate(`/blogs`);
       } catch (err) {
         console.error(err);
         console.log(`Could not update blog post | (no photo updates)`);
@@ -145,12 +200,18 @@ const BlogManager = () => {
       fetchExistingBlog();
     }
   }, [blogId]);
-  if (!user)
-    return (
-      <>
-        <PromptSignIn subject={'"Create a Blog"'} />
-      </>
-    );
+
+  useEffect(() => {
+    function extractImgTags(htmlString) {
+      const imgTags = htmlString.match(/<img[^>]*\/>/g); // Regular expression to match <img ... />
+      return imgTags || []; // Return an array of <img> tags, or an empty array if none are found
+    }
+    console.log(extractImgTags(editorState));
+    console.log(extractImgTags(editorState));
+  }, [editorState]);
+
+  if (user?._id !== import.meta.env.VITE_REACT_APP_ADMIN_ID)
+    return <NotAuthorized />;
   return (
     <div className="flex flex-col lg:flex-row gap-4 p-4 max-w-[160rem] mx-auto pt-12 mt-52 md:mt-80">
       <div className="w-full min-h-[75svh] flex flex-col justify-between lg:w-1/2 bg-neutral-900 text-gray-300 rounded-lg shadow-md p-4">

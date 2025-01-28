@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 // services
 
 // context
-import {useAuthContext} from "../../context/auth/useAuthContext";
+import { useAuthContext } from "../../context/auth/useAuthContext";
 import { login } from "../../service/authService";
 
 const Login = () => {
@@ -46,7 +46,11 @@ const Login = () => {
     <main className="bg-theme-dn min-h-screen flex flex-col items-center justify-start md:justify-center mt-52 md:mt-0">
       <div className="bg-theme-darkest border-gray-400 border-2 p-8 rounded-lg shadow-md w-full max-w-md mt-20">
         <h1 className="text-3xl text-gray-100 mb-4 text-center">Log In</h1>
-        <p className="text-gray-100 mb-4 text-center">{message}</p>
+        <span className="text-center">
+          This is for admin access only, you will not be able to sign in to an
+          account
+        </span>
+        <p className="text-red-500 mb-4 text-center">{message}</p>
         <form autoComplete="off" onSubmit={handleSubmit} className="space-y-6">
           {/* username */}
           <div>
@@ -97,21 +101,7 @@ const Login = () => {
           </div>
         </form>
       </div>
-      <div className="w-full  flex justify-center items-end gap-12 text-xl">
-        <Link
-          className="text-gray-100 mt-12 text-lg border-b"
-          to="/auth/signup"
-        >
-          Use Sign Up
-        </Link>{" "}
-        {/* google sign in */}
-        {/* <button
-          onClick={handleGoogleLogin}
-          className="mt-12 bg-gray-700 text-gray-100 px-4 py-2 rounded-md focus:outline-none border hover:bg-gray-600 transition-colors duration-200"
-        >
-          Sign in With Google
-        </button> */}
-      </div>
+      <div className="w-full  flex justify-center items-end gap-12 text-xl"></div>
     </main>
   );
 };

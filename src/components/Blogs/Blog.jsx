@@ -75,7 +75,7 @@ const Blog = ({ propsBlogId }) => {
     try {
       await navigator.clipboard.writeText(url); // Copy the URL to clipboard
       setIsCopiedMessage("Copied Link");
-      console.log(url);
+      
 
       // Clear the message after 1 second
       setTimeout(() => setIsCopiedMessage(""), 1000);
@@ -109,7 +109,7 @@ const Blog = ({ propsBlogId }) => {
     scrollToTop();
     if (blogs.length === 0) {
       fetchBlogs();
-      console.log(showBlog, ' <showBlog');
+ 
     }
   }, [blogId]);
 
@@ -168,7 +168,7 @@ const Blog = ({ propsBlogId }) => {
 
         {/* Blog Content */}
         <div
-          className="preview test bg-gray-100 p-4 ql-editor"
+          className="preview bg-gray-100 p-4 ql-editor"
           dangerouslySetInnerHTML={{
             __html: DOMPurify.sanitize(showBlog.content),
           }}
@@ -210,6 +210,9 @@ const Blog = ({ propsBlogId }) => {
           >
             Next Blog
           </button>
+          {user._id == import.meta.env.VITE_REACT_APP_ADMIN_ID && (
+            <Link className="relative z-50 p-5 bg-red-400 text-white" to={`/blogs/${blogId}/edit`}>edit</Link>
+          )}
         </div>
         <Link
           style={{ color: "#fff" }}
