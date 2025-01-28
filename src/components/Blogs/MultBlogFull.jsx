@@ -1,5 +1,5 @@
-
-
+import { Link } from "react-router-dom";
+import DOMPurify from "dompurify";
 export const MultipleBlogsFull = ({
   title,
   img,
@@ -13,14 +13,6 @@ export const MultipleBlogsFull = ({
   return (
     <>
       <div className="blog-container flex flex-col items-center relative max-h-[50rem]  p-5 ql-snow ql-editor  mx-auto my-12 pointer-events-none">
-        {/* author info */}
-        <div className="flex items-center gap-4 absolute text-gray-100 -top-0 left-5">
-          <img className="rounded-full view-blog-img" src={profileImg} alt="" />
-          <span className="text-xl">{name}</span>{" "}
-        </div>
-
-        {/* header and date */}
-
         <div className="mt-12">
           {img && <img className="w-full mx- my-8" src={img} alt="" />}
 
@@ -31,14 +23,14 @@ export const MultipleBlogsFull = ({
                 month: "long",
                 day: "numeric",
               })}{" "}
-              &mdash; Sommelier Circle Community
+              &mdash; Cassius Reynolds Tech Blogs
             </span>
           </div>
         </div>
 
         {/* title and content */}
         <h2 className=" text-2xl md:text-4xl text-start leading-[3rem] text-gray-100 relative top-10  w-9/12 ">
-          {title.length > 60 ? `${title.slice(0, 60)}...` : title}
+          {title?.length > 60 ? `${title.slice(0, 60)}...` : title}
         </h2>
         <div
           className=" text-gray-100 md:text-xl mt-12 p-4 leading-[3rem]"
@@ -58,14 +50,6 @@ export const MultipleBlogsFull = ({
             read more
           </button>
         </Link>{" "}
-        <Link className="flex items-center gap-6" to={`/profiles/${id}`}>
-          <button
-            type="button"
-            className="text-xl md:text-3xl bg-gray-700 text-gray-100 px-4 py-2 rounded-md focus:outline-none hover:bg-gray-600 transition-colors duration-200"
-          >
-            view profile
-          </button>
-        </Link>
         <button
           onClick={() =>
             alert(
@@ -77,7 +61,6 @@ export const MultipleBlogsFull = ({
         >
           share blog
         </button>
-        {/* </Link> */}
       </div>
     </>
   );

@@ -14,7 +14,11 @@ export const createBlog = async (formData) => {
   };
   console.log(formData);
   try {
-    const response = await axios.post(BLOG_BASE_URL, formData, options);
+    const response = await axios.post(
+      `${BLOG_BASE_URL}/new`,
+      formData,
+      options
+    );
 
     return response.data;
   } catch (err) {
@@ -99,6 +103,7 @@ export const deleteBlog = async (blogId) => {
 export const getBlog = async (blogId) => {
   try {
     const response = await axios.get(`${BLOG_BASE_URL}/${blogId}`);
+    console.log(response, ' <blogId one blog /blogsService.js');
     return response.data;
   } catch (err) {
     console.error("Error getting blog:", err);
@@ -115,9 +120,10 @@ export const getAllBlogs = async () => {
       },
     };
     const response = await axios.get(
-      `${import.meta.env.BLOG_BASE_URL}`,
+      `${BLOG_BASE_URL}`,
       options
     );
+    console.log(response, ' <service/blogsService.js');
     return response.data;
   } catch (err) {
     console.error("Error getting all blogs:", err);

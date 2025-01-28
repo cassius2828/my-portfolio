@@ -9,12 +9,15 @@ import ShowBlog from "./components/Blogs/ShowBlog";
 import BlogManager from "./components/Blogs/BlogManager";
 import DisplayBlogs from "./components/Blogs/DisplayBlogs";
 import Login from "./components/Auth/Login";
+import Header from "./components/Header/Header";
+import "react-quill/dist/quill.snow.css";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         {/* <Nav /> */}
+        <Header/>
         <Routes>
           <Route path="/" element={<Landing />} />
 

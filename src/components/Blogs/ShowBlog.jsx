@@ -1,4 +1,4 @@
-
+import Blog from "./Blog";
 
 const ShowBlog = ({ propsBlogId, style }) => {
   // the style prop passes in marginTop:0

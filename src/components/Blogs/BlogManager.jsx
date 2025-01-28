@@ -58,7 +58,7 @@ const BlogManager = () => {
   const [editorState, setEditorState] = useState("");
   // context
   const { user } = useAuthContext();
-  const { isLoading, setIsLoading } = useGlobalContext();
+  const { isLoading, dispatch } = useGlobalContext();
   // hooks
   const navigate = useNavigate();
   const { blogId } = useParams();
@@ -74,12 +74,15 @@ const BlogManager = () => {
         title,
         content: editorState,
       };
+      dispatch({ type: "startLoading" });
       try {
         await updateBlogNoImg(formData, blogId);
         navigate(`/blogs/user-blogs/${user._id}`);
       } catch (err) {
         console.error(err);
         console.log(`Could not update blog post | (no photo updates)`);
+      } finally {
+        dispatch({ type: "stopLoading" });
       }
     } else if (img && blogId) {
       const dataToSendToServer = new FormData();
@@ -88,10 +91,12 @@ const BlogManager = () => {
       dataToSendToServer.append("content", editorState);
       try {
         await updateBlogWithImg(dataToSendToServer, blogId);
-        navigate(`/blogs/user-blogs/${user._id}`);
+        navigate(`/blogs`);
       } catch (err) {
         console.error(err);
         console.log(`Could not update blog post | (YES photo update)`);
+      } finally {
+        dispatch({ type: "stopLoading" });
       }
     } else {
       // create new form
@@ -102,10 +107,12 @@ const BlogManager = () => {
       dataToSendToServer.append("content", editorState);
       try {
         await createBlog(dataToSendToServer);
-        navigate(`/blogs/user-blogs/${user._id}`);
+        navigate(`/blogs`);
       } catch (err) {
         console.error(err);
         console.log(`Could not create blog post`);
+      } finally {
+        dispatch({ type: "stopLoading" });
       }
     }
   };
@@ -209,7 +216,7 @@ const BlogManager = () => {
             }}
             className="mt-4 bg-gray-600 text-gray-200 px-4 py-2 rounded-md hover:bg-gray-700 transition duration-300"
           >
-            Create
+            {isLoading ? "Submitting Blog..." : "Create Blog"}
           </button>
         )}
       </div>
@@ -230,7 +237,7 @@ const BlogManager = () => {
                   month: "long",
                   day: "numeric",
                 })}{" "}
-                &mdash; Sommelier Circle Community
+                &mdash; Cassius Reynolds Tech Blogs
               </span>
             </div>
           </div>
