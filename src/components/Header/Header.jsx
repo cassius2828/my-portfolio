@@ -25,7 +25,6 @@ export const NavList = () => {
   const { scrollToTop } = useGlobalContext();
   const navigate = useNavigate();
   const location = useLocation();
-
   // Function to handle navigation and scrolling
   const handleNavigationAndScroll = (id) => {
     if (location.pathname !== "/") {

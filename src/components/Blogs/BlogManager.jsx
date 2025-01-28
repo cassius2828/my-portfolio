@@ -24,6 +24,7 @@ import { useAuthContext } from "../../context/auth/useAuthContext";
 // Components
 import PromptSignIn from "../Reuseables/PromptSignIn";
 import NotAuthorized from "../Reuseables/NotAuthorized";
+import { getUser } from "../../service/authService";
 // outside constants | rich text vars
 
 const BlogManager = () => {
@@ -220,13 +221,8 @@ const BlogManager = () => {
   }, [blogId]);
 
   useEffect(() => {
-    function extractImgTags(htmlString) {
-      const imgTags = htmlString.match(/<img[^>]*\/>/g); // Regular expression to match <img ... />
-      return imgTags || []; // Return an array of <img> tags, or an empty array if none are found
-    }
-    console.log(extractImgTags(editorState));
-    console.log(editorState);
-  }, [editorState]);
+    getUser();
+  }, []);
 
   if (user?._id !== import.meta.env.VITE_REACT_APP_ADMIN_ID)
     return <NotAuthorized />;
