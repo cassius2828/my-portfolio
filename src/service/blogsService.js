@@ -1,7 +1,7 @@
 import axios from "axios";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
-const BLOG_BASE_URL = BASE_URL + "/blogs";
+export const BLOG_BASE_URL = BASE_URL + "/blogs";
 
 ///////////////////////////
 // ? POST | Create a new blog
@@ -68,7 +68,7 @@ export const updateBlogNoImg = async (formData, blogId) => {
       formData,
       options
     );
-console.log(response, ' <updateBlogNoImg /blogsService.js');
+    console.log(response, " <updateBlogNoImg /blogsService.js");
     return response.data;
   } catch (err) {
     console.error(err);
@@ -118,14 +118,12 @@ export const getAllBlogs = async () => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     };
-    const response = await axios.get(
-      `${BLOG_BASE_URL}`,
-      options
-    );
-    console.log(response, ' <service/blogsService.js');
+    const response = await axios.get(`${BLOG_BASE_URL}`, options);
+    console.log(response, " <service/blogsService.js");
     return response.data;
   } catch (err) {
     console.error("Error getting all blogs:", err);
     throw err;
   }
 };
+

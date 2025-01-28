@@ -3,8 +3,15 @@ import DOMPurify from "dompurify";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ReactQuill from "react-quill";
+import Quill from "quill";
+import ImageUploader from "quill-image-uploader";
+import axios from "axios";
+import "quill-image-uploader/dist/quill.imageUploader.min.css";
+
+Quill.register("modules/imageUploader", ImageUploader);
 // Services
 import {
+  BLOG_BASE_URL,
   createBlog,
   getBlog,
   updateBlogNoImg,
@@ -35,7 +42,32 @@ const BlogManager = () => {
       [{ align: [] }],
       [{ direction: "rtl" }],
     ],
+    // imageUploader: {
+    //   upload: (file) => {
+    //     return new Promise(async (resolve, reject) => {
+    //       try {
+    //         const formData = new FormData();
+    //         formData.append("file", file);
+
+    //         const response = await axios.post("YOUR_BACKEND_UPLOAD_ENDPOINT", formData, {
+    //           headers: {
+    //             "Content-Type": "multipart/form-data",
+    //           },
+    //         });
+
+    //         if (response.status === 200) {
+    //           resolve(response.data.url); // Resolve with the uploaded image URL
+    //         } else {
+    //           reject("Image upload failed");
+    //         }
+    //       } catch (error) {
+    //         reject(error.response?.data?.message || "An error occurred during image upload");
+    //       }
+    //     });
+    //   },
+    // },
   };
+
   const formats = [
     "header",
     "font",
@@ -68,66 +100,52 @@ const BlogManager = () => {
   const navigate = useNavigate();
   const { blogId } = useParams();
 
-  const quillRef = useRef(null); // Ref for the Quill editor
-  const fileInputRef = useRef(null); // Ref for the hidden file input
+  async function processEditorContent(content) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(content, "text/html");
+    const images = doc.querySelectorAll("img");
 
-  // Handle file selection and image upload
-  const handleImageUpload = async (file) => {
-    // Example: Replace this with your backend upload logic
-    const formData = new FormData();
-    formData.append("file", file);
+    const promises = Array.from(images).map(async (img) => {
+      const src = img.getAttribute("src");
+      if (src && src.startsWith("data:image")) {
+        // Upload the base64 image to the server
+        const formData = new FormData();
+        formData.append("file", src);
+        formData.append("title", title);
 
-    try {
-      const response = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        const { url } = await response.json(); // URL of the uploaded image
-        const quill = quillRef.current.getEditor(); // Access Quill editor instance
-        const range = quill.getSelection(); // Get current cursor position
-        quill.insertEmbed(range.index, "image", url); // Insert the uploaded image URL
-      } else {
-        console.error("Image upload failed");
+        try {
+          const response = await axios.post(
+            `${BLOG_BASE_URL}/editor-image-upload`,
+            formData
+          );
+          console.log(response, " <response from editor image upload");
+          const imageUrl = response.data.url;
+          console.log(imageUrl, " <imageUrl from editor image upload");
+          // Replace the base64 src with the uploaded URL
+          img.setAttribute("src", imageUrl);
+        } catch (error) {
+          console.error("Error uploading image:", error);
+        }
       }
-    } catch (error) {
-      console.error("Error uploading image:", error);
-    }
-  };
+    });
 
-  // Listen for changes in the hidden file input
-  useEffect(() => {
-    const input = fileInputRef.current;
-
-    const handleChange = (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        handleImageUpload(file);
-      }
-    };
-
-    if (input) {
-      input.addEventListener("change", handleChange);
-    }
-
-    return () => {
-      if (input) {
-        input.removeEventListener("change", handleChange);
-      }
-    };
-  }, []);
-
+    return Promise.all(promises).then(() => {
+      return doc.body.innerHTML; // Return the updated HTML content
+    });
+  }
   ///////////////////////////
   // Handle Submit
   ///////////////////////////
   const handleSubmit = async (e) => {
     e.preventDefault();
     // edit existing form
+
+    // Usage before saving
+    const processedContent = await processEditorContent(editorState);
     if (img === null && blogId) {
       const formData = {
         title,
-        content: editorState,
+        content: processedContent,
       };
       dispatch({ type: "startLoading" });
       try {
@@ -143,7 +161,7 @@ const BlogManager = () => {
       const dataToSendToServer = new FormData();
       dataToSendToServer.append("img", img);
       dataToSendToServer.append("title", title);
-      dataToSendToServer.append("content", editorState);
+      dataToSendToServer.append("content", processedContent);
       try {
         await updateBlogWithImg(dataToSendToServer, blogId);
         navigate(`/blogs`);
@@ -159,7 +177,7 @@ const BlogManager = () => {
       dataToSendToServer.append("owner", user._id);
       dataToSendToServer.append("img", img);
       dataToSendToServer.append("title", title);
-      dataToSendToServer.append("content", editorState);
+      dataToSendToServer.append("content", processedContent);
       try {
         await createBlog(dataToSendToServer);
         navigate(`/blogs`);
@@ -207,7 +225,7 @@ const BlogManager = () => {
       return imgTags || []; // Return an array of <img> tags, or an empty array if none are found
     }
     console.log(extractImgTags(editorState));
-    console.log(extractImgTags(editorState));
+    console.log(editorState);
   }, [editorState]);
 
   if (user?._id !== import.meta.env.VITE_REACT_APP_ADMIN_ID)
