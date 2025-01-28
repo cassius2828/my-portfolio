@@ -1,7 +1,6 @@
 // src/components/Hero.jsx
 import { useEffect } from "react";
 import { WavyBackground } from "../ui/wavy-background";
-import IconList from "../SocialMedia/IconList";
 import { FeaturedProjectCard } from "../Projects/FeaturedProjectCard";
 import { useGlobalContext } from "../../context/useGlobalContext";
 import { getFeaturedProjects } from "../../service/projectsService";
@@ -12,7 +11,7 @@ const Hero = () => {
   useEffect(() => {
     fetchProjects("setFeaturedProjects", getFeaturedProjects);
     setTimeout(() => {
-      if (featuredProjects.length === 0)
+      if (featuredProjects?.length === 0)
         fetchProjects("setFeaturedProjects", getFeaturedProjects);
     }, 5000);
   }, []);
