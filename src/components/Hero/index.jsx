@@ -24,7 +24,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen  flex items-center justify-around mt-12"
+      className="min-h-screen  flex items-center justify-around mt-20 md:mt-12"
     >
       <WavyBackground />
       <div className="flex flex-col items-center justify-between w-10/12 mx-auto relative z-20 ">

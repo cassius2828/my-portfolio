@@ -8,9 +8,9 @@ const Header = () => {
   return (
     <header className="bg-gray-900 text-white py-4 shadow-md fixed z-50 w-full top-0 h-32 flex">
       <div className="container mx-auto flex justify-between items-center px-4">
-        <div className="text-2xl font-bold">
+        <Link to={"/"} className="text-2xl font-bold">
           Cassius Reynolds | Full Stack Developer
-        </div>
+        </Link>
 
         {/* Navigation Links */}
         <NavList />
@@ -107,7 +107,7 @@ export const NavList = () => {
       </ul>
       {/* Mobile */}
       <ul
-      onClick={() => setIsOpen(false)}
+        onClick={() => setIsOpen(false)}
         className={`items-center text-2xl md:hidden flex flex-col h-screen bg-gray-900 w-screen absolute translate-y-0 left-0 ${
           isOpen ? "" : " opacity-0 pointer-events-none -translate-y-full"
         } transition-all duration-200 justify-around `}
