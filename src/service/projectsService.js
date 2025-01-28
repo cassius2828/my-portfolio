@@ -32,7 +32,6 @@ export const getRegularProjects = async () => {
 };
 
 export const getProjectById = async (id) => {
-  console.log(id, ' <-- id in serveice')
   try {
     const response = await axios.get(`${BASE_URL}/projects/${id}`);
     return response.data;

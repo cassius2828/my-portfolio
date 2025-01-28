@@ -119,9 +119,7 @@ const BlogManager = () => {
             `${BLOG_BASE_URL}/editor-image-upload`,
             formData
           );
-          console.log(response, " <response from editor image upload");
           const imageUrl = response.data.url;
-          console.log(imageUrl, " <imageUrl from editor image upload");
           // Replace the base64 src with the uploaded URL
           img.setAttribute("src", imageUrl);
         } catch (error) {
