@@ -75,7 +75,6 @@ const Blog = ({ propsBlogId }) => {
     try {
       await navigator.clipboard.writeText(url); // Copy the URL to clipboard
       setIsCopiedMessage("Copied Link");
-      
 
       // Clear the message after 1 second
       setTimeout(() => setIsCopiedMessage(""), 1000);
@@ -109,7 +108,6 @@ const Blog = ({ propsBlogId }) => {
     scrollToTop();
     if (blogs.length === 0) {
       fetchBlogs();
- 
     }
   }, [blogId]);
 
@@ -211,7 +209,12 @@ const Blog = ({ propsBlogId }) => {
             Next Blog
           </button>
           {user._id == import.meta.env.VITE_REACT_APP_ADMIN_ID && (
-            <Link className="relative z-50 p-5 bg-red-400 text-white" to={`/blogs/${blogId}/edit`}>edit</Link>
+            <Link
+              className="relative z-50 p-5 bg-red-400 text-white"
+              to={`/blogs/${blogId}/edit`}
+            >
+              edit
+            </Link>
           )}
         </div>
         <Link

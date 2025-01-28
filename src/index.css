@@ -154,6 +154,10 @@ button {
   line-height: 4.5rem;
 }
 
+.ql-syntax {
+  font-size: 1.4rem;
+}
+
 /* loader X */
 .loader {
   transform: rotateZ(45deg);
