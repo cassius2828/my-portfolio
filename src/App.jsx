@@ -11,17 +11,21 @@ import DisplayBlogs from "./components/Blogs/DisplayBlogs";
 import Login from "./components/Auth/Login";
 import Header from "./components/Header/Header";
 import "react-quill/dist/quill.snow.css";
+import Enable2FA from "./components/Auth/Enable2FA";
+import ConfirmMFA from "./components/Auth/ConfirmMFA";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         {/* <Nav /> */}
-        <Header/>
+        <Header />
         <Routes>
           <Route path="/" element={<Landing />} />
 
           <Route path="/auth/login" element={<Login />} />
+          <Route path="/auth/enable-2fa" element={<Enable2FA />} />
+          <Route path="/auth/verify-2fa" element={<ConfirmMFA />} />
           <Route path="/blogs" element={<DisplayBlogs />} />
           <Route path="/blogs/new" element={<BlogManager />} />
           <Route path="/blogs/:blogId/edit" element={<BlogManager />} />

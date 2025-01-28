@@ -70,7 +70,7 @@ export const NavList = () => {
             Blogs
           </Link>
         </li>
-        {user._id === import.meta.env.VITE_REACT_APP_ADMIN_ID && (
+        {user?._id === import.meta.env.VITE_REACT_APP_ADMIN_ID && (
           <li>
             <Link to="/blogs/new" className="hover:text-blue-500">
               Create Blog

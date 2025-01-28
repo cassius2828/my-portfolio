@@ -34,9 +34,17 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const user = await login(formData); // TODO build login service function
-      setUser(user);
-      navigate("/");
+      const data = await login(formData); // TODO build login service function
+      console.log(data, " <data in handleSubmit /Login.jsx");
+      if (data.token) {
+        setUser(data.token);
+        navigate("/");
+      } else if (data.twoFactorFA) {
+        localStorage.setItem("userId", data.userId);
+        navigate("/auth/verify-2FA");
+      } else {
+        updateMessage("Invalid credentials");
+      }
     } catch (err) {
       updateMessage(err.response.data.error);
     }

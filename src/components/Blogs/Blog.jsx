@@ -19,9 +19,6 @@ const Blog = ({ propsBlogId }) => {
 
   // Global context
   const {
-    handleAddToFavorites,
-    favoritesMessage,
-    setFavoritesMessage,
     isLoading,
     setIsLoading,
     scrollToTop,
@@ -111,7 +108,7 @@ const Blog = ({ propsBlogId }) => {
     }
   }, [blogId]);
 
-  if (!showBlog._id) return <NotFound404 />;
+  if (!showBlog?._id) return <NotFound404 />;
   if (isLoading) return <LoaderX />;
 
   return (
@@ -208,7 +205,7 @@ const Blog = ({ propsBlogId }) => {
           >
             Next Blog
           </button>
-          {user._id == import.meta.env.VITE_REACT_APP_ADMIN_ID && (
+          {user?._id == import.meta.env.VITE_REACT_APP_ADMIN_ID && (
             <Link
               className="relative z-50 p-5 bg-red-400 text-white"
               to={`/blogs/${blogId}/edit`}

@@ -11,6 +11,10 @@ const Hero = () => {
   const { fetchProjects, featuredProjects, isLoading } = useGlobalContext();
   useEffect(() => {
     fetchProjects("setFeaturedProjects", getFeaturedProjects);
+    setTimeout(() => {
+      if (featuredProjects.length === 0)
+        fetchProjects("setFeaturedProjects", getFeaturedProjects);
+    }, 5000);
   }, []);
   if (isLoading)
     return (

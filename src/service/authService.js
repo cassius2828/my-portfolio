@@ -53,6 +53,7 @@ export async function login(userCredentials) {
     );
 
     const data = response.data;
+    console.log(data);
     if (data.error) {
       throw new Error(data.error);
     }
@@ -63,8 +64,40 @@ export async function login(userCredentials) {
       const user = JSON.parse(atob(data.token.split(".")[1]));
       return user.user;
     }
+    if (data.twoFactorFA) {
+      return data;
+    }
   } catch (err) {
     console.log(err);
     throw err;
   }
 }
+
+export const enable2FAService = async () => {
+  try {
+    const response = await axios.post(`${BASE_URL}/auth/enable-2FA`, null, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
+    console.log(response, "response");
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    return err;
+  }
+};
+
+export const confirm2FAService = async (code, userId) => {
+  console.log('code', code);
+  try {
+    const response = await axios.post(`${BASE_URL}/auth/verify-2FA`, {
+      token: code,
+      userId: userId,
+    });
+    localStorage.removeItem("userId");
+    localStorage.setItem("token", response.data.token);
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    return error;
+  }
+};
