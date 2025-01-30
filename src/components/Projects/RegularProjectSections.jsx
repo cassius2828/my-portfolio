@@ -22,7 +22,7 @@ const RegularProjectSections = () => {
         </h2>
         <hr className="w-1/5 mx-auto h-3 bg-gray-100 border-none mt-5 relative z-10" />
       </div>
-      <ul className="row grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-28 mx-12 pt-20 border-t relative z-10 ">
+      <ul className="row grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-28 mx-12 pt-20 border-t relative z-10 ">
         {regularProjects?.map((project, idx) => {
           return (
             <RegularProjectCard

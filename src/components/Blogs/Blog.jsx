@@ -18,11 +18,7 @@ const Blog = ({ propsBlogId }) => {
     useGlobalContext();
 
   // Global context
-  const {
-    isLoading,
-    setIsLoading,
-    scrollToTop,
-  } = useGlobalContext();
+  const { isLoading, setIsLoading, scrollToTop } = useGlobalContext();
 
   // Hooks
   const navigate = useNavigate();
@@ -54,13 +50,6 @@ const Blog = ({ propsBlogId }) => {
         navigate(`/blogs/${blogs[0]._id}`);
       }
     }
-  };
-
-  ///////////////////////////
-  // Handle Toggle Modal
-  ///////////////////////////
-  const handleToggleModal = () => {
-    setIsOpen((prev) => !prev);
   };
 
   ///////////////////////////
@@ -113,18 +102,11 @@ const Blog = ({ propsBlogId }) => {
 
   return (
     <>
-      {/* Edit or Delete Modal */}
-      <EditOrDeleteModal
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-        subject={"blog"}
-      />
-
       {/* Blog Owner Info */}
       <div className="flex items-center gap-4 w-8/12 relative z-10 mx-auto text-gray-100 mt-20">
         <Link
           className="flex items-center gap-4"
-          to={`/profiles/${showBlog.owner?._id}`}
+          to={`/blogs/${showBlog?._id}/manage`}
         >
           <img
             className="rounded-full view-blog-img"
@@ -137,13 +119,14 @@ const Blog = ({ propsBlogId }) => {
 
       {/* Blog Container */}
       <div className="blog-container relative p-5 ql-snow ql-editor w-full max-w-[90rem] mx-auto mb-24">
-        {user?._id.toString() === showBlog.owner?._id && (
-          <div
-            onClick={handleToggleModal}
-            className="text-right text-gray-100 text-6xl relative -top-12 cursor-pointer"
+        {user?._id.toString() === import.meta.env.VITE_REACT_APP_ADMIN_ID && (
+          <Link
+          style={{textDecoration:'none', color:'#fff'}}
+            className=" text-gray-100 text-6xl relative -top-12 cursor-pointer"
+            to={`/blogs/${showBlog?._id}/edit`}
           >
             ...
-          </div>
+          </Link>
         )}
 
         {/* Blog Info */}
@@ -170,12 +153,6 @@ const Blog = ({ propsBlogId }) => {
         ></div>
 
         {/* Share Section */}
-        <div className="share-container relative">
-          <span className="text-2xl text-gray-100 absolute -top-16 left-1/2 -translate-x-1/2">
-            Share this blog with others!
-          </span>
-        </div>
-
         <div
           onClick={handleCopyLink}
           className="border border-gray-700 w-48 my-12 mx-auto text-gray-100 text-xl p-3 text-center rounded-md hover:bg-gray-700 transition-colors duration-200 cursor-pointer"
