@@ -1,15 +1,20 @@
+// React and Hooks
 import { useEffect, useState } from "react";
+// Context
 import { useAuthContext } from "../../context/auth/useAuthContext";
 import { useGlobalContext } from "../../context/useGlobalContext";
+// Utilities
 import DOMPurify from "dompurify";
-import { useParams, useLocation, useNavigate, Link } from "react-router-dom";
+// Routing
+import { useParams, useNavigate, Link } from "react-router-dom";
+// Services
 import { getBlog } from "../../service/blogsService";
+// Components
 import LoaderX from "../Reuseables/LoaderX";
-import EditOrDeleteModal from "../Modals/EditOrDelete";
 import { FixedAlert } from "../Reuseables/Alert";
 import NotFound404 from "../Reuseables/NotFound404";
+
 const Blog = ({ propsBlogId }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isCopiedMessage, setIsCopiedMessage] = useState("");
 
   // Auth context
@@ -18,12 +23,12 @@ const Blog = ({ propsBlogId }) => {
     useGlobalContext();
 
   // Global context
-  const { isLoading, setIsLoading, scrollToTop } = useGlobalContext();
+  const { isLoading, scrollToTop } = useGlobalContext();
 
   // Hooks
   const navigate = useNavigate();
   const { blogId } = useParams();
-  const location = useLocation();
+
 
   // Variables
   const totalBlogsLength = blogs.length;
