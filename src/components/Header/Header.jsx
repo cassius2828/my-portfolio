@@ -87,6 +87,11 @@ export const NavList = () => {
             Contact
           </button>
         </li>
+        <li>
+          <Link to={`/resume`} className="hover:text-blue-500">
+            Resume
+          </Link>
+        </li>
         {user ? (
           <li>
             <button
@@ -149,6 +154,11 @@ export const NavList = () => {
           >
             Contact
           </button>
+        </li>
+        <li>
+          <Link to={`/resume`} className="hover:text-blue-500">
+            Resume
+          </Link>
         </li>
         {user ? (
           <li>
