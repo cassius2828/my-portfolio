@@ -2,6 +2,7 @@
 
 import {
   faCertificate,
+  faCloud,
   faGraduationCap,
   faLaptop,
 } from "@fortawesome/free-solid-svg-icons";
@@ -20,11 +21,18 @@ const About = () => {
           <span className="text-xl md:text-3xl">Free Lance Experience</span>
           <FontAwesomeIcon className="text-xl md:text-3xl" icon={faMoneyBill} />
         </div>{" "}
-        <div className="flex flex-col md:flex-row  items-center justify-center gap-4 text-center">
+        {/* <div className="flex flex-col md:flex-row  items-center justify-center gap-4 text-center">
           <span className="text-xl md:text-3xl">5+ certifications</span>
           <FontAwesomeIcon
             className="text-xl md:text-3xl"
             icon={faCertificate}
+          />
+        </div>{" "} */}
+         <div className="flex flex-col md:flex-row  items-center justify-center gap-4 text-center">
+          <span className="text-xl md:text-3xl">Cloud Knowledge</span>
+          <FontAwesomeIcon
+            className="text-xl md:text-3xl"
+            icon={faCloud}
           />
         </div>{" "}
         <div className="flex flex-col md:flex-row  items-center justify-center gap-4 text-center">
@@ -44,14 +52,17 @@ const About = () => {
           <p style={{lineHeight:'3rem'}} className="mt-4 text-2xl md:text-3xl">
             I am a passionate software engineer with strong expertise in React,
             Express, MongoDB, PostgreSQL, JavaScript, Tailwind, CSS, HTML, SASS, Bootstrap, and building RESTful
-            APIs. Additionally, I have a working knowledge of Python, Django, Remix, Nextjs, Shopify Storefronts and API,
+            APIs. Additionally, I have a working knowledge of Python, Django, Remix, Next.js, Shopify Storefronts and API,
             Cypress, TypeScript, AWS, system design,
             GraphQL, deployment processes, design tools, marketing tools and more.
             <br />
             <br />
             Since starting my coding journey in December 2022, I’ve graduated
-            from General Assembly’s Software Engineering Bootcamp (2024), earned 5 programming certifications, currently working on adding another 4, and completed numerous
-            real-world freelance projects. I bring team-oriented skills, honed
+            from General Assembly’s Software Engineering Bootcamp (2024), on my way to earning multiple cloud certifications, and completed numerous
+            real-world freelance projects. 
+            <br />
+            <br />
+            I bring team-oriented skills, honed
             through collaboration with mid- and senior-level engineers on
             various group projects, along with managerial experience from
             previous roles. I hold a BA in Communication Studies and plan to
