@@ -14,7 +14,7 @@ const ShowProject = () => {
 
   useEffect(() => {
     scrollToTop();
-
+    console.log(prodLink, " <-- prod link");
     fetchProjectById(projectId);
   }, []);
   if (isLoading) return <LoaderX />;
@@ -51,8 +51,20 @@ const ShowProject = () => {
         <h4 className="text-4xl md:text-5xl font-bold">Links</h4>
 
         <div className="flex items-center justify-center gap-12 mt-6">
-          <Link to={prodLink || "/"}>
-            <button className="p-4 shadow-md rounded cursor-pointer text-blue-500 border border-blue-500 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-blue-500 hover:text-white my-2 text-xl md:text-2xl">
+          <Link
+            aria-disabled={Boolean(prodLink)}
+            tabIndex={prodLink ? 0 : -1}
+            className={prodLink ? "" : "pointer-events-none"}
+            to={prodLink || "/"}
+          >
+            <button
+              tabIndex={prodLink ? 0 : -1}
+              className={`${
+                prodLink
+                  ? "text-blue-500  border-blue-500"
+                  : "text-gray-500  border-gray-500"
+              } p-4 shadow-md rounded cursor-pointer  border transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-blue-500 hover:text-white my-12 text-2xl`}
+            >
               See Live!
             </button>
           </Link>

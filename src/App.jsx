@@ -13,6 +13,7 @@ import Header from "./components/Header/Header";
 import "react-quill/dist/quill.snow.css";
 import Enable2FA from "./components/Auth/Enable2FA";
 import ConfirmMFA from "./components/Auth/ConfirmMFA";
+import ResumePage from "./components/Resume";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Landing />} />
-
+          <Route path="/resume" element={<ResumePage />} />
           <Route path="/auth/login" element={<Login />} />
           <Route path="/auth/enable-2fa" element={<Enable2FA />} />
           <Route path="/auth/verify-2fa" element={<ConfirmMFA />} />
