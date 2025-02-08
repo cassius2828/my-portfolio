@@ -138,7 +138,7 @@ const BlogManager = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // edit existing form
-
+    dispatch({ type: "startLoading" });
     // Usage before saving
     const processedContent = await processEditorContent(editorState);
     if (img === null && blogId) {
@@ -146,7 +146,7 @@ const BlogManager = () => {
         title,
         content: processedContent,
       };
-      dispatch({ type: "startLoading" });
+
       try {
         await updateBlogNoImg(formData, blogId);
         navigate(`/blogs`);
