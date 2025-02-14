@@ -1,4 +1,4 @@
-@import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -60,19 +60,6 @@ button {
   padding: 10px;
   margin-top: 20px;
   background-color: #111213; /* Set the background color */
-}
-
-.preview h1,
-.saved-content h1,
-.preview h2,
-.saved-content h2,
-.preview h3,
-.saved-content h3,
-.preview h4,
-.saved-content h4,
-.preview li,
-.saved-content li {
-  /* color: #f3f4f6; */
 }
 
 .preview p,
