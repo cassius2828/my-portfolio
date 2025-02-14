@@ -12,7 +12,6 @@ export const createBlog = async (formData) => {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   };
-  console.log(formData);
   try {
     const response = await axios.post(
       `${BLOG_BASE_URL}/new`,
@@ -23,7 +22,6 @@ export const createBlog = async (formData) => {
     return response.data;
   } catch (err) {
     console.error(err);
-    console.log("Could not communicate with db to create blog");
     throw err;
   }
 };
@@ -47,7 +45,7 @@ export const updateBlogWithImg = async (formData, blogId) => {
     return response.data;
   } catch (err) {
     console.error(err);
-    console.log("Could not communicate with db to update blog including img");
+
     throw err;
   }
 };
@@ -71,9 +69,6 @@ export const updateBlogNoImg = async (formData, blogId) => {
     return response.data;
   } catch (err) {
     console.error(err);
-    console.log(
-      "Could not communicate with db to update blog without an image"
-    );
     throw err;
   }
 };
@@ -124,4 +119,3 @@ export const getAllBlogs = async () => {
     throw err;
   }
 };
-

@@ -56,7 +56,6 @@ export const GlobalProvider = ({ children }) => {
       dispatch({ type: actionType, payload: data });
     } catch (err) {
       console.error(err);
-      console.log(`Unable to get projects from service file`);
       dispatch({ type: actionType, payload: [] });
     } finally {
       dispatch({ type: "stopLoading" });
@@ -72,7 +71,6 @@ export const GlobalProvider = ({ children }) => {
       dispatch({ type: "setShowProject", payload: data });
     } catch (err) {
       console.error(err);
-      console.log(`Unable to fetch project with id of ${id}`);
       dispatch({ type: "setShowProject", payload: {} });
     } finally {
       dispatch({ type: "stopLoading" });
