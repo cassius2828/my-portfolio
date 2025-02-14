@@ -29,7 +29,6 @@ const Blog = ({ propsBlogId }) => {
   const navigate = useNavigate();
   const { blogId } = useParams();
 
-
   // Variables
   const totalBlogsLength = blogs.length;
   const currentBlogIdx = blogs.indexOf(blogId);
@@ -126,7 +125,7 @@ const Blog = ({ propsBlogId }) => {
       <div className="blog-container relative p-5 ql-snow ql-editor w-full max-w-[90rem] mx-auto mb-24">
         {user?._id.toString() === import.meta.env.VITE_REACT_APP_ADMIN_ID && (
           <Link
-          style={{textDecoration:'none', color:'#fff'}}
+            style={{ textDecoration: "none", color: "#fff" }}
             className=" text-gray-100 text-6xl relative -top-12 cursor-pointer"
             to={`/blogs/${showBlog?._id}/edit`}
           >
