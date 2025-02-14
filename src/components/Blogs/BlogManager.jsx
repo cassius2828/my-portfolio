@@ -2,13 +2,12 @@
 import DOMPurify from "dompurify";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+
 import ReactQuill from "react-quill";
-import Quill from "quill";
-import ImageUploader from "quill-image-uploader";
 import axios from "axios";
 import "quill-image-uploader/dist/quill.imageUploader.min.css";
 
-Quill.register("modules/imageUploader", ImageUploader);
+
 // Services
 import {
   BLOG_BASE_URL,
@@ -28,6 +27,7 @@ import { getUser } from "../../service/authService";
 
 const BlogManager = () => {
   const modules = {
+    syntax: true,
     toolbar: [
       [{ header: "1" }, { header: "2" }, { font: [] }],
       [{ size: [] }],
@@ -42,30 +42,6 @@ const BlogManager = () => {
       [{ align: [] }],
       [{ direction: "rtl" }],
     ],
-    // imageUploader: {
-    //   upload: (file) => {
-    //     return new Promise(async (resolve, reject) => {
-    //       try {
-    //         const formData = new FormData();
-    //         formData.append("file", file);
-
-    //         const response = await axios.post("YOUR_BACKEND_UPLOAD_ENDPOINT", formData, {
-    //           headers: {
-    //             "Content-Type": "multipart/form-data",
-    //           },
-    //         });
-
-    //         if (response.status === 200) {
-    //           resolve(response.data.url); // Resolve with the uploaded image URL
-    //         } else {
-    //           reject("Image upload failed");
-    //         }
-    //       } catch (error) {
-    //         reject(error.response?.data?.message || "An error occurred during image upload");
-    //       }
-    //     });
-    //   },
-    // },
   };
 
   const formats = [
