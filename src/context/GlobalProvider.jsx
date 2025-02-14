@@ -31,6 +31,8 @@ export const GlobalProvider = ({ children }) => {
   const [showGuestModal, setShowGuestModal] = useState(true);
   const [blogs, setBlogs] = useState([]);
   const [showBlog, setShowBlog] = useState({});
+  const [blogIdArray, setBlogIdArray] = useState([]);
+
   const { featuredProjects, regularProjects, isLoading, showProject } = state;
   const fallbackImg =
     "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg";
@@ -42,6 +44,9 @@ export const GlobalProvider = ({ children }) => {
       const data = await getAllBlogs();
 
       setBlogs(data);
+      if (data.length !== blogIdArray.length) {
+        setBlogIdArray(data.map((blog) => blog._id));
+      }
     } catch (err) {
       console.error(err);
     } finally {
@@ -92,8 +97,6 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
- 
-
   return (
     <GlobalContext.Provider
       value={{
@@ -112,6 +115,7 @@ export const GlobalProvider = ({ children }) => {
         blogs,
         setShowBlog,
         showBlog,
+        blogIdArray,
       }}
     >
       {children}

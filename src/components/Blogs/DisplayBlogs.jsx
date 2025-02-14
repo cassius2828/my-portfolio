@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useGlobalContext } from "../../context/useGlobalContext";
 import LoaderX from "../Reuseables/LoaderX";
 const DisplayBlogs = () => {
-  const [display, setDisplay] = useState("full");
+  const [display, setDisplay] = useState("list");
   const { isLoading, scrollToTop, blogs, fetchBlogs } = useGlobalContext();
 
   const handleDisplayChange = (e) => {

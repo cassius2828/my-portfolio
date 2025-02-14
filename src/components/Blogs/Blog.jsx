@@ -15,51 +15,50 @@ import { FixedAlert } from "../Reuseables/Alert";
 import NotFound404 from "../Reuseables/NotFound404";
 
 const Blog = ({ propsBlogId }) => {
-  const [isCopiedMessage, setIsCopiedMessage] = useState("");
-
   // Auth context
   const { user } = useAuthContext();
-  const { blogs, setShowBlog, showBlog, dispatch, fetchBlogs } =
-    useGlobalContext();
-
   // Global context
-  const { isLoading, scrollToTop } = useGlobalContext();
-
+  const {
+    blogs,
+    setShowBlog,
+    showBlog,
+    dispatch,
+    fetchBlogs,
+    blogIdArray,
+    isLoading,
+    scrollToTop,
+  } = useGlobalContext();
   // Hooks
   const navigate = useNavigate();
   const { blogId } = useParams();
+  // state
+  const [isCopiedMessage, setIsCopiedMessage] = useState("");
+  const [currentBlogIdx, setCurrentBlogIdx] = useState(
+    blogIdArray.indexOf(blogId)
+  );
 
-
-  // Variables
-  const totalBlogsLength = blogs.length;
-  const currentBlogIdx = blogs.indexOf(blogId);
-
-  ///////////////////////////
   // Handle Blog Navigation
-  ///////////////////////////
   const handleBlogNavigation = async (direction) => {
     if (direction === "next") {
-      if (currentBlogIdx > 0) {
-        // Go back one blog
-        navigate(`/blogs/${blogs[currentBlogIdx - 1]._id}`);
-      } else {
-        // Circle back to the last blog
-        navigate(`/blogs/${blogs[totalBlogsLength - 1]._id}`);
-      }
-    } else {
-      if (currentBlogIdx < totalBlogsLength - 1) {
+      if (currentBlogIdx < blogs.length - 1) {
         // Go forward one blog
         navigate(`/blogs/${blogs[currentBlogIdx + 1]._id}`);
       } else {
-        // Go to the first blog
+        // Circle back to the first blog
         navigate(`/blogs/${blogs[0]._id}`);
+      }
+    } else {
+      if (currentBlogIdx === 0) {
+        // Go to the last blog
+        navigate(`/blogs/${blogs[blogs.length - 1]._id}`);
+      } else {
+        // Go back one blog
+        navigate(`/blogs/${blogs[currentBlogIdx - 1]._id}`);
       }
     }
   };
 
-  ///////////////////////////
   // Handle Copy Link
-  ///////////////////////////
   const url = encodeURI(window.location.href);
 
   const handleCopyLink = async () => {
@@ -74,9 +73,12 @@ const Blog = ({ propsBlogId }) => {
     }
   };
 
-  ///////////////////////////
+  // keeps currentBlogIdx in sync with displayed blog
+  useEffect(() => {
+    setCurrentBlogIdx(blogIdArray.indexOf(blogId));
+  }, [blogId]);
+
   // Fetch Blog
-  ///////////////////////////
   useEffect(() => {
     const fetchBlog = async () => {
       dispatch({ type: "startLoading" });
@@ -92,9 +94,7 @@ const Blog = ({ propsBlogId }) => {
     fetchBlog();
   }, [blogId, propsBlogId]);
 
-  ///////////////////////////
   // Scroll to Top on ID Change
-  ///////////////////////////
   useEffect(() => {
     scrollToTop();
     if (blogs.length === 0) {
@@ -126,7 +126,7 @@ const Blog = ({ propsBlogId }) => {
       <div className="blog-container relative p-5 ql-snow ql-editor w-full max-w-[90rem] mx-auto mb-24">
         {user?._id.toString() === import.meta.env.VITE_REACT_APP_ADMIN_ID && (
           <Link
-          style={{textDecoration:'none', color:'#fff'}}
+            style={{ textDecoration: "none", color: "#fff" }}
             className=" text-gray-100 text-6xl relative -top-12 cursor-pointer"
             to={`/blogs/${showBlog?._id}/edit`}
           >
@@ -178,7 +178,7 @@ const Blog = ({ propsBlogId }) => {
           </button>
           <span className="absolute left-1/2 -translate-x-1/2 text-gray-100">
             {blogs.findIndex((blog) => blog._id === blogId) + 1} /{" "}
-            {totalBlogsLength}
+            {blogs.length}
           </span>
           <button
             onClick={() => handleBlogNavigation("next")}
