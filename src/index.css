@@ -1,3 +1,4 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -58,21 +59,7 @@ button {
 .saved-content {
   padding: 10px;
   margin-top: 20px;
-  background-color: #f9f9f9;
   background-color: #111213; /* Set the background color */
-}
-
-.preview h1,
-.saved-content h1,
-.preview h2,
-.saved-content h2,
-.preview h3,
-.saved-content h3,
-.preview h4,
-.saved-content h4,
-.preview li,
-.saved-content li {
-  color: #f3f4f6;
 }
 
 .preview p,
@@ -86,7 +73,7 @@ button {
 .ql-container {
   background-color: #f3f4f6; /* Set the background color */
   background-color: #111213; /* Set the background color */
-  color: #f3f4f6; /* Set the text color */
+  /* Set the text color */
   border: none !important;
   border-radius: 4px;
 }
@@ -142,8 +129,8 @@ button {
 .ql-editor span,
 .ql-editor p,
 .ql-editor li {
-  color: #f3f4f6; /* Set the text color for the toolbar icons */
-  font-size: 1.7rem !important;
+  /* color: #f3f4f6; Set the text color for the toolbar icons */
+  font-size: 1.4rem !important;
 }
 .ql-editor strong {
   color: #f3f4f6; /* Set the text color for the toolbar icons */
