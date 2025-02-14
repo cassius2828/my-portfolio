@@ -22,7 +22,6 @@ import {
 import { useGlobalContext } from "../../context/useGlobalContext";
 import { useAuthContext } from "../../context/auth/useAuthContext";
 // Components
-import PromptSignIn from "../Reuseables/PromptSignIn";
 import NotAuthorized from "../Reuseables/NotAuthorized";
 import { getUser } from "../../service/authService";
 // outside constants | rich text vars
@@ -152,7 +151,6 @@ const BlogManager = () => {
         navigate(`/blogs`);
       } catch (err) {
         console.error(err);
-        console.log(`Could not update blog post | (no photo updates)`);
       } finally {
         dispatch({ type: "stopLoading" });
       }
@@ -166,7 +164,6 @@ const BlogManager = () => {
         navigate(`/blogs`);
       } catch (err) {
         console.error(err);
-        console.log(`Could not update blog post | (YES photo update)`);
       } finally {
         dispatch({ type: "stopLoading" });
       }
@@ -182,7 +179,6 @@ const BlogManager = () => {
         navigate(`/blogs`);
       } catch (err) {
         console.error(err);
-        console.log(`Could not create blog post`);
       } finally {
         dispatch({ type: "stopLoading" });
       }
@@ -211,7 +207,6 @@ const BlogManager = () => {
           setEditorState(existingBlogData.content);
         } catch (err) {
           console.error(err);
-          console.log("Cannot find existing blog");
         }
       };
       fetchExistingBlog();

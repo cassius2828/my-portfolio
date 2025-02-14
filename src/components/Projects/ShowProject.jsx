@@ -14,7 +14,6 @@ const ShowProject = () => {
 
   useEffect(() => {
     scrollToTop();
-    console.log(prodLink, " <-- prod link");
     fetchProjectById(projectId);
   }, []);
   if (isLoading) return <LoaderX />;

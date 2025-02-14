@@ -6,8 +6,8 @@ export const getAllProjects = async () => {
     return response.data;
   } catch (err) {
     console.error(err);
-    console.log(`Unable to get all projects from server`);
-    //    return err.error.message
+
+    throw err;
   }
 };
 
@@ -17,7 +17,7 @@ export const getFeaturedProjects = async () => {
     return response.data;
   } catch (err) {
     console.error(err);
-    console.log(`Unable to get featured projects from server`);
+    throw err;
   }
 };
 
@@ -27,7 +27,7 @@ export const getRegularProjects = async () => {
     return response.data;
   } catch (err) {
     console.error(err);
-    console.log(`Unable to get regular projects from server`);
+    throw err;
   }
 };
 
@@ -37,6 +37,6 @@ export const getProjectById = async (id) => {
     return response.data;
   } catch (err) {
     console.error(err);
-    console.log(`Unable to get project with id of ${id} from server`);
+    throw err;
   }
 };
