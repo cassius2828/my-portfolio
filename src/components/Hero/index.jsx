@@ -5,6 +5,7 @@ import { FeaturedProjectCard } from "../Projects/FeaturedProjectCard";
 import { useGlobalContext } from "../../context/useGlobalContext";
 import { getFeaturedProjects } from "../../service/projectsService";
 import LoaderX from "../Reuseables/LoaderX";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const { fetchProjects, featuredProjects, isLoading } = useGlobalContext();
@@ -39,6 +40,10 @@ const Hero = () => {
             <h2 className="text-2xl md:text-4xl text-gray-100">
               Full-Stack Developer
             </h2>
+            <br /> 
+            <Link className="text-lg underline hover:text-blue-300 transition-colors duration-200" to={`https://www.credly.com/users/cassius-reynolds`}>
+            Credly Badges
+            </Link>
           </div>
           {/* col 2 */}
           <div className="flex flex-col items-center">
