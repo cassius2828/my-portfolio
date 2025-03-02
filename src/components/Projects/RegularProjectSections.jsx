@@ -33,6 +33,7 @@ const RegularProjectSections = () => {
               technologies={project.technologies}
               prodLink={project.prodLink}
               githubLink={project.githubLink}
+              videoLink={project.videoLink}
               id={project._id}
             />
           );
