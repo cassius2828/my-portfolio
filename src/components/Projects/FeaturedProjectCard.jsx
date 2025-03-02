@@ -11,7 +11,11 @@ export const FeaturedProjectCard = ({
   id,
 }) => {
   const { fallbackImg } = useGlobalContext();
-
+  const preLoadUrl = () => {
+    const image = new Image();
+    image.src = img;
+    return image;
+  };
   return (
     <>
       <div className="project-card text-center rounded-lg relative flex justify-center flex-col items-center ">
@@ -47,6 +51,7 @@ export const FeaturedProjectCard = ({
         </div>
         <div>
           <Link
+            onMouseEnter={preLoadUrl}
             to={`projects/${id}`}
             className="text-gray-100 relative top-5 cursor-pointer"
           >

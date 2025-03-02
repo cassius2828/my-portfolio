@@ -8,8 +8,14 @@ export const RegularProjectCard = ({
   prodLink,
   githubLink,
   videoLink,
+  img,
   id,
 }) => {
+  const preLoadUrl = () => {
+    const image = new Image();
+    image.src = img;
+    return image;
+  };
   return (
     <>
       <div className="project-card text-center  rounded-lg relative transition-all duration-300 ease-in-out hover:bg-gray-800 border-y md:border-none">
@@ -55,11 +61,10 @@ export const RegularProjectCard = ({
           </Link>
         </div>
         <Link
+          onMouseEnter={preLoadUrl}
           to={`projects/${id}`}
           className="text-gray-100 relative -top-3 cursor-pointer"
         >
-          {/* {showMore ? "hide details" : "more details"}
-           */}
           more details
         </Link>
         {/* tech list  */}
