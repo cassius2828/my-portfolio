@@ -7,8 +7,15 @@ import LoaderX from "../Reuseables/LoaderX";
 const ShowProject = () => {
   const { fallbackImg, scrollToTop, showProject, fetchProjectById, isLoading } =
     useGlobalContext();
-  const { img, title, description, technologies, prodLink, githubLink } =
-    showProject || {};
+  const {
+    img,
+    title,
+    description,
+    technologies,
+    prodLink,
+    githubLink,
+    videoLink,
+  } = showProject || {};
   const navigate = useNavigate();
   const { projectId } = useParams();
 
@@ -50,6 +57,14 @@ const ShowProject = () => {
         <h4 className="text-4xl md:text-5xl font-bold">Links</h4>
 
         <div className="flex items-center justify-center gap-12 mt-6">
+        {/* demo link */}
+          {videoLink && (
+            <Link to={videoLink || "/"}>
+              <button className="p-4 shadow-md rounded cursor-pointer text-blue-500 border border-blue-500 transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-blue-500 hover:text-white my-2 text-xl md:text-2xl">
+                See Demo!
+              </button>
+            </Link>
+          )}
           <Link
             aria-disabled={Boolean(prodLink)}
             tabIndex={prodLink ? 0 : -1}
