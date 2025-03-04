@@ -41,7 +41,7 @@ const Hero = () => {
               Full-Stack Developer
             </h2>
             <br /> 
-            <Link className="text-lg underline hover:text-blue-300 transition-colors duration-200" to={`https://www.credly.com/users/cassius-reynolds`}>
+            <Link className="text-lg font-semibold bg-blue-800 text-gray-100 hover:bg-blue-950  rounded-md p-3  transition-colors duration-200" to={`https://www.credly.com/users/cassius-reynolds`}>
             Credly Badges
             </Link>
           </div>

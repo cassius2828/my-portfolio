@@ -14,7 +14,6 @@ export const FeaturedProjectCard = ({
   const preLoadUrl = () => {
     const image = new Image();
     image.src = img;
-    return image;
   };
   return (
     <>
