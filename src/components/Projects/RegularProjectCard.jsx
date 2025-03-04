@@ -14,7 +14,6 @@ export const RegularProjectCard = ({
   const preLoadUrl = () => {
     const image = new Image();
     image.src = img;
-    return image;
   };
   return (
     <>
