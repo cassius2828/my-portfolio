@@ -8,7 +8,7 @@ const ResumePage = () => {
 
   const navigate = useNavigate();
 
-  const handleCopyLink = async () => {
+  const handleCopyLink = async () => {0
     try {
       await navigator.clipboard.writeText(googleDriveResumeLink);
       setIsCopiedMessage("Copied Link");
